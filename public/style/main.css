@@ -1,4 +1,50 @@
 body {
-    background-color: #000;
     color: lightskyblue;
+}
+
+
+
+#coreContainerBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
+}
+#coreContainerBackground img {
+    /* max-width: 80%;
+    max-height: 80%; */
+    filter: drop-shadow(0 0 10px lightskyblue);
+    filter: drop-shadow(0 24px 8px rgb(34, 77, 102));
+}
+#coreContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    backdrop-filter: blur(4px);
+    /* TEMP STYLE */
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 5rem;
+    font-size: 1.5rem;
+    text-shadow: 0 1px 2px #00000080;
+    text-align: center;
+    line-height: 3rem;
+}
+
+
+.device-orientation-portrait {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+.device-orientation-landscape {
+    background-color: rgba(0, 0, 0, 0.5);
 }
