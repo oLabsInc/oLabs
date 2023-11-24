@@ -100,3 +100,19 @@ function updateDeviceOrientation(type, angle) {
     }
 
 }
+
+
+
+// Main Menu TEMP
+
+const
+    allLinks = document.querySelectorAll('.menu-item-icon img')
+
+allLinks.forEach(link => {
+    link.addEventListener('click', e => {
+        let origUrl = document.URL
+        console.log(origUrl)
+        origUrl = origUrl.replace(/q=[^&]+&[a-z]+\=[a-z]+/, '#0');
+        window.location.href = origUrl
+    })
+})
