@@ -82,7 +82,6 @@ function updateDeviceOrientation(type, angle) {
     deviceDimensions.currentOrientationAngle = angle
     // console.log(deviceDimensions)
 
-    console.log(coreContainer)
     if (deviceDimensions.currentOrientation === 'landscape-primary') {
         coreContainer.innerText = JSON.parse(deviceDimensions.h)
         coreContainer.innerText = 'Device is ' + JSON.parse(deviceDimensions.h) + 'px wide in Landscape\nTurn device upright for 2D\nDevice is ready for VR and AR'
@@ -105,14 +104,179 @@ function updateDeviceOrientation(type, angle) {
 
 // Main Menu TEMP
 
-// const
-//     allLinks = document.querySelectorAll('.menu-item-icon img')
+const
+    mainMenuItems = document.querySelectorAll('.menu-item'),
+    openMenuButton = document.querySelector('.open-menu'),
+    closeMenuButton = document.querySelector('.close-menu'),
+    pageMenu = document.getElementById('pageMenu'),
+    pageNavItems = document.querySelectorAll('.page-menu-item')
 
-// allLinks.forEach(link => {
-//     link.addEventListener('click', e => {
-//         let origUrl = document.URL
-//         console.log(origUrl)
-//         origUrl = origUrl.replace(/q=[^&]+&[a-z]+\=[a-z]+/, '#0');
-//         window.location.href = origUrl
-//     })
-// })
+
+
+
+openMenuButton.addEventListener('click', openMenu)
+
+closeMenuButton.addEventListener('click', resetMenu)
+
+
+mainMenuItems.forEach(menuItem => {
+    const
+        menuProjects = [
+            {
+                title: "Projects",
+                menu_directory: [
+                    {
+                        page: "WideSpread",
+                        route: "#projects-widespread"
+                    },
+                    {
+                        page: "SpreadShield",
+                        route: "#projects-spreadshield"
+                    },
+                    {
+                        page: "FlexFloor",
+                        route: "#projects-flexfloor"
+                    }
+                ]
+            },
+            {
+                title: "Testing",
+                menu_directory: [
+                    {
+                        page: "Home",
+                        route: "#testing-widespread"
+                    },
+                    {
+                        page: "SpreadShield Tests",
+                        route: "#testing-spreadshield"
+                    },
+                    {
+                        page: "FlexFloor Tests",
+                        route: "#testing-flexfloor"
+                    }
+                ]
+            },
+            {
+                title: "Network Folder",
+                menu_directory: [
+                    {
+                        page: "Home",
+                        route: "#network-folder-root"
+                    },
+                    {
+                        page: "Favorites",
+                        route: "#network-folder-favorites"
+                    }
+                ]
+            },
+            {
+                title: "Contact",
+                menu_directory: [
+                    {
+                        page: "Home",
+                        route: "#contact-us"
+                    }
+                ]
+            }
+    
+        ]
+    
+    menuItem.addEventListener('click', e => {
+        mainMenuItems.forEach(resetMenuItem => {
+            resetMenuItem.classList.remove('current-menu-item')
+        })
+
+        const
+            menuPageName = menuItem.querySelector('a').getAttribute('data-menu')
+        
+        switch (menuPageName) {
+            case menuProjects[0].title:
+                updatePageMenu(menuItem, menuProjects[0])
+                break;
+                case menuProjects[1].title:
+                    updatePageMenu(menuItem, menuProjects[1])
+                break;
+                case menuProjects[2].title:
+                    updatePageMenu(menuItem, menuProjects[2])
+                break;
+                case menuProjects[3].title:
+                    updatePageMenu(menuItem, menuProjects[3])
+                break;
+            default:
+                console.log('Not a Page...')
+
+            // code block
+        }
+
+        
+    })
+})
+
+
+function openMenu() {
+    closeMenuButton.parentElement.classList.add('menu-is-open')
+}
+
+function resetMenu() {
+    mainMenuItems.forEach(resetMenuItem => {
+        resetMenuItem.classList.remove('current-menu-item')
+        closeMenuButton.classList.remove('menu-is-open')
+        pageMenu.style.top = '100%'
+    })
+    document.querySelector('.page-menu-data').remove()
+}
+
+function updatePageMenu(link, page) {
+    pageMenu.style.top = 0
+
+    let
+        pageMenuData = document.createElement('div'),
+        pageMenuTitle = document.createElement('div'),
+        pageMenuDirectory = document.createElement('div')
+        
+    const oldNavPage = document.querySelector('.page-menu-data')
+        if (oldNavPage) {
+            oldNavPage.remove()
+        }
+        
+        if (pageMenu.children.length < 1) {
+            pageMenuData.classList.add('page-menu-data')
+            pageMenuTitle.classList.add('page-menu-title')
+            pageMenuDirectory.classList.add('page-menu-directory')
+
+            pageMenuTitle.textContent = page.title
+
+            page.menu_directory.forEach(menuItem => {
+                const
+                    pageMenuItem = document.createElement('div'),
+                    pageMenuItemLink = document.createElement('a')
+
+                pageMenuItem.classList.add('page-menu-item')
+                pageMenuItemLink.textContent = menuItem.page
+                pageMenuItemLink.setAttribute('href', menuItem.route)
+
+                pageMenuItem.appendChild(pageMenuItemLink)
+                pageMenuDirectory.appendChild(pageMenuItem)
+
+                pageMenuItemLink.addEventListener('click', e => {
+                    pageMenu.style.top = '100%'
+                })
+            })
+
+            pageMenuData.appendChild(pageMenuTitle)
+            pageMenuData.appendChild(pageMenuDirectory)
+
+            pageMenu.appendChild(pageMenuData)
+
+            link.classList.add('current-menu-item')
+        }
+}
+
+
+pageNavItems.forEach(navItem => {
+    const navLink = navItem.querySelector('a')
+    navLink.addEventListener('click', e => {
+        e.preventDefault()
+        console.log(e.target)
+    })
+})

@@ -23,55 +23,57 @@
     </div>
 
 
-    <div class="container">
+
+    <!-- ORIGINAL WORKING MAIN MENU -->
+
+    <div class="main-menu-container">
         <ul id="menu">
             <!-- open-menu id for click event -->
-            <a class="menu-button icon-plus" id="open-menu" href="#menu" title="Show Navigation">
-                <span class="menu-item-icon">
+            <a class="menu-button" id="openMenu" href="#menu" title="Show Navigation">
+                <span class="menu-item-icon open-menu">
                     <img src="./public/media/image/rectangular/system/icons/menu.png" alt="Menu Icon">
                 </span>
             </a>
-            <a class="menu-button" href="#0" title="Hide Navigation">
+            <a class="menu-button" href="#" title="Hide Navigation">
                 <span class="menu-item-icon close-menu">
                     <img src="./public/media/image/rectangular/system/icons/close.png" alt="Close Menu Icon">
                 </span>
             </a>
             <li class="menu-item">
-                <a href="#0">
+                <a href="#menu" data-menu="Testing">
                     <span class="menu-item-icon">
                         <img src="./public/media/image/rectangular/system/icons/testing.png" alt="Testing Icon">
-                    </span>    
+                    </span>
                 </a>
             </li>
             <li class="menu-item">
-                <a href="#0">
+                <a href="#menu" data-menu="Projects">
                     <span class="menu-item-icon">
                         <img src="./public/media/image/rectangular/system/icons/projects-2.png" alt="Projects Icon">
-                    </span>    
+                    </span>
                 </a>
             </li>
             <li class="menu-item">
-                <a href="#0">
+                <a href="#menu" data-menu="Network Folder">
                     <span class="menu-item-icon">
-                        <img src="./public/media/image/rectangular/system/icons/network-folder.png" alt="Network Folder Icon">
-                    </span>    
+                        <img src="./public/media/image/rectangular/system/icons/network-folder.png"
+                            alt="Network Folder Icon">
+                    </span>
                 </a>
             </li>
             <li class="menu-item">
-                <a href="#0">
+                <a href="#menu" data-menu="Contact">
                     <span class="menu-item-icon">
                         <img src="./public/media/image/rectangular/system/icons/contact.png" alt="Contact Us Icon">
-                    </span>    
+                    </span>
                 </a>
             </li>
         </ul>
     
-        <div class="content">
-            <div class="text">
-                <h3> Click circle!</h3>
-                <h6>Tada...!</h6>
-            </div>
-        </div>
     </div>
+
+    <div id="pageMenu">
+    </div>
+
 </body>
 </html>
