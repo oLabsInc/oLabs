@@ -1,3 +1,34 @@
+/* SITE COLOR SCHEME */
+
+/* 
+    color: rgb(221, 70, 176);
+    color: rgb(218, 66, 69);
+    color: rgb(68, 90, 254);
+    color: rgb(7, 212, 255);
+    color: rgb(228, 230, 55);
+    color: rgb(255, 177, 22);
+    color: rgb(65, 212, 50);
+
+
+    TURN INTO CSS VARIABLES --(red) etc.
+*/
+
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    cursor: default;
+}
+p, input, textarea {
+    cursor: text;
+}
+a {
+    cursor: pointer;
+    text-decoration: none;
+    color:rgb(65, 212, 50);
+    font-weight: bolder;
+}
 body {
     color: lightskyblue;
 }
@@ -266,3 +297,158 @@ body {
     color: lightskyblue;
     text-shadow: 0 0 2px #fff;
 }
+
+
+
+
+.home-button {
+}
+
+.home-button a {
+    text-decoration: none;
+}
+.home-button-data {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.home-button-data img {
+    cursor: pointer;
+    max-width: 50px;
+    max-height: 50px;
+    width: 50px;
+}
+.home-button-data p {
+    cursor: pointer;
+    padding: 0.25rem;
+    color: rgb(221, 70, 176);
+    color: rgb(218, 66, 69);
+    color: rgb(68, 90, 254);
+    color: rgb(7, 212, 255);
+    color: rgb(228, 230, 55);
+    color: rgb(255, 177, 22);
+    color: rgb(65, 212, 50);
+
+    font-weight: bolder;
+}
+/* PAGE STYLE */
+.page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100dvh;
+    padding-bottom: 125px;
+}
+
+
+.page-header {
+    position: relative;
+    z-index: 200;
+    margin-bottom: 2rem;
+}
+.page-title {
+}
+.page-title h1 {
+    font-size: 2rem;
+    margin-top: 1rem;
+}
+.page-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2rem;
+    width: 100%;
+}
+.page-section {
+    padding: 1rem;
+    width: 100%;
+}
+
+.page-section-header {
+}
+.page-section-header h3 {
+    font-size: 1.75rem;
+    text-align: center;
+}    
+.page-section-body {
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    gap: 1rem;
+    max-width: 100%;
+    
+}
+
+.page-subsection {
+    background-color: #ccccccbe;
+    padding: 1rem;
+    border-radius: 1rem;
+    width: 350px;
+    max-width: 100%;
+
+}
+.page-subsection-header {
+    margin-bottom: 1rem;
+}
+
+.page-subsection-header h5 {
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: bolder;
+}
+.json-schema>ul {
+    list-style: none;
+}
+.json-schema li {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.json-schema li::after {
+    content: ',';
+    color: #333;
+}
+.json-schema li:last-child::after {
+    content: '';
+    color: #333;
+}
+.json-schema .db-model-key {
+    font-weight: bolder;
+    color: orangered;
+}
+.json-schema .db-model-key::after {
+    content: ":";
+    padding-right: 10px;
+    color: #333;
+}
+.json-schema .db-model-value {
+    color: #333;
+}
+
+.json-schema>ul>ul {
+    list-style: none;
+}
+
+.json-schema>ul>ul {
+    list-style: none;
+}
+
+.json-schema>ul>ul .{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    list-style: none;
+}
+

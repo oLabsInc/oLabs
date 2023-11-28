@@ -170,11 +170,11 @@ mainMenuItems.forEach(menuItem => {
                 ]
             },
             {
-                title: "Contact",
+                title: "Database",
                 menu_directory: [
                     {
                         page: "Home",
-                        route: "#contact-us"
+                        route: "#database"
                     }
                 ]
             }
