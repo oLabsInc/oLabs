@@ -83,15 +83,15 @@ function updateDeviceOrientation(type, angle) {
     // console.log(deviceDimensions)
 
     if (deviceDimensions.currentOrientation === 'landscape-primary') {
-        coreContainer.innerText = JSON.parse(deviceDimensions.h)
-        coreContainer.innerText = 'Device is ' + JSON.parse(deviceDimensions.h) + 'px wide in Landscape\nTurn device upright for 2D\nDevice is ready for VR and AR'
+        // coreContainer.innerText = JSON.parse(deviceDimensions.h)
+        // coreContainer.innerText = 'Device is ' + JSON.parse(deviceDimensions.h) + 'px wide in Landscape\nTurn device upright for 2D\nDevice is ready for VR and AR'
         coreContainer.classList.remove('device-orientation-portrait')
         coreContainer.classList.add('device-orientation-landscape')
         coreContainerBackgroundImg.style.maxWidth = '50%'
         coreContainerBackgroundImg.style.maxHeight = '50%'
         
     } else {
-        coreContainer.innerText = 'Device is ' + JSON.parse(deviceDimensions.w) + 'px wide in Portrait\nCurrently experiencing oLabs in 2D\nTurn device sideways to enter VR or AR'
+        // coreContainer.innerText = 'Device is ' + JSON.parse(deviceDimensions.w) + 'px wide in Portrait\nCurrently experiencing oLabs in 2D\nTurn device sideways to enter VR or AR'
         coreContainer.classList.remove('device-orientation-landscape')
         coreContainer.classList.add('device-orientation-portrait')
         coreContainerBackgroundImg.style.maxWidth = '80%'
@@ -157,7 +157,7 @@ mainMenuItems.forEach(menuItem => {
                 ]
             },
             {
-                title: "Network Folder",
+                title: "Home",
                 menu_directory: [
                     {
                         page: "Home",
@@ -278,5 +278,40 @@ pageNavItems.forEach(navItem => {
     navLink.addEventListener('click', e => {
         e.preventDefault()
         console.log(e.target)
+    })
+})
+
+
+
+
+// Switch Fonts
+
+const
+    switchReadablityButtons = document.querySelectorAll('.switch-readablity-button')
+
+switchReadablityButtons.forEach(switchReadablityButton => {
+    switchReadablityButton.addEventListener('click', e => {
+        let
+            elementToSwitch = switchReadablityButton.parentElement.parentElement,
+            elementToSwitchCurrentState = elementToSwitch.dataset.font,
+            allParas = elementToSwitch.querySelectorAll('.page-subsection-body p')
+
+        console.log(elementToSwitchCurrentState)
+        if (elementToSwitchCurrentState === 'Readable') {
+            elementToSwitch.dataset.font = 'Readable2'
+            
+            allParas.forEach(para => {
+                para.style.fontFamily = 'Readable2'
+                para.style.fontSize = '1.5rem'
+                console.log(para)
+            })
+        } else {
+            elementToSwitch.dataset.font = 'Readable'
+            allParas.forEach(para => {
+                para.style.fontFamily = 'Readable'
+                para.style.fontSize = '1rem'
+                console.log(para)
+            })
+        }
     })
 })
