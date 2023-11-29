@@ -493,9 +493,12 @@ body {
 
 .page-section-image, .page-section-video, .page-section-audio {
     max-width: 90%;
-    height: 300px;
+    max-height: 300px;
     padding: 10px;
     border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .page-section-image {
