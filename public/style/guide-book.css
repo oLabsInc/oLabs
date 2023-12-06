@@ -73,8 +73,9 @@
     margin: 0;
     box-sizing: border-box;
     cursor: default;
-    font-family: Abnes;
-
+    font-family: "owners-text", sans-serif;
+    font-weight: 200;
+    font-style: normal;
 }
 
 .future-font {
@@ -82,11 +83,65 @@
     font-weight: 100;
     font-size: 1rem;
 }
-
+.code-font {
+    font-family: "input-mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+}
+.reading-font {
+    font-family: "tachyon", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+}
 .font-header-1 {
+    font-family: Abnes;
+}
+.page-header-1 {
     font-size: 2rem;
     font-weight: 500;
     text-shadow: 0 0 5px #ffffff7c;
+}
+.page-header-2 {
+    font-size: 1.25rem;
+    font-weight: 400;
+    text-shadow: 0 0 5px #ffffff7c;
+}
+.table-of-contents-chapter {
+    width: 100%;
+    list-style-type: upper-roman;
+}
+.table-of-contents-chapter li {
+    width: 100%;
+}
+.table-of-contents-section {
+    height: 0;
+    /* height: auto; */
+    overflow: hidden;
+    transition: all 1000ms;
+}
+.table-of-contents-section li {
+    list-style-type: decimal-leading-zero;
+    margin-left: 20px;
+    width: calc(100% - 20px);
+    color:rgb(221, 70, 176);
+}
+.table-of-contents-section li::marker {
+    font-size: 0.75rem;
+    color:rgb(221, 70, 176)
+}
+
+.table-of-contents-topic {
+    height: 0;
+    overflow: hidden;
+}
+.table-of-contents-topic li {
+    list-style-type: lower-roman;
+    margin-left: 40px;
+    width: calc(100% - 40px);
+    color: rgb(255, 177, 22);
+}
+.table-of-contents-topic li::marker {
+    color: rgb(255, 177, 22);
 }
 p, input, textarea {
     cursor: text;
@@ -521,7 +576,6 @@ body {
 .page-section-header {
 }
 .page-section-header h3 {
-    font-size: 1rem;
     text-align: center;
 }    
 .page-section-body {

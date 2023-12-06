@@ -94,8 +94,8 @@ function updateDeviceOrientation(type, angle) {
         // coreContainer.innerText = 'Device is ' + JSON.parse(deviceDimensions.w) + 'px wide in Portrait\nCurrently experiencing oLabs in 2D\nTurn device sideways to enter VR or AR'
         coreContainer.classList.remove('device-orientation-landscape')
         coreContainer.classList.add('device-orientation-portrait')
-        coreContainerBackgroundImg.style.maxWidth = '80%'
-        coreContainerBackgroundImg.style.maxHeight = '80%'
+        coreContainerBackgroundImg.style.maxWidth = '50%'
+        coreContainerBackgroundImg.style.maxHeight = '50%'
     }
 
 }

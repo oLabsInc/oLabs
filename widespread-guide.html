@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>oLabs</title>
+    <link rel="icon" type="image/png" href="./public/media/image/rectangular/system/logo/olabs_1a1a1a.png" />
+    <link rel="stylesheet" href="https://use.typekit.net/eny2fmh.css">
+    <link rel="stylesheet" href="./public/style/guide-book.css">
+    <script src="./public/logic/main.js" defer></script>
+
+    <!-- ADD SCRIPT TAGS BELOW -->
+
+
+    <!-- END OF SCRIPT TAGS -->
+
+</head>
+<body>
+    <div id="coreContainerBackground">
+        <img src="./public/media/image/rectangular/system/logo/olabs_1a1a1a.png" alt="oLabs Logo">
+    </div>
+    <div id="coreContainer">
+        <div class="site-header">
+            <h1 class="font-header-1">oLabs</h1>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="page">
+            <div class="page-header">
+                <div class="page-title">
+                    <h1 class="future-font page-header-1">WideSpread Guide</h1>
+                </div>
+            </div>
+
+            <div class="page-body">
+        
+        
+                <div class="page-section">
+                    <div class="page-section-header">
+                        <h3 class="future-font page-header-2">Table of Contents</h3>
+                    </div>
+        
+                    <div class="page-section-body">
+                        <ol class="table-of-contents-chapter">
+                            <li>Introduction</li>
+                            <li class="drop-down-header">Zones</li>
+                            <ol class="table-of-contents-section drop-down-data">
+                                <li class="drop-down-sub-header">Academy</li>
+                                    <ol class="table-of-contents-topic drop-down-sub-data">
+                                        <li>Courses</li>
+                                        <li>Classrooms</li>
+                                        <li>Features</li>
+                                    </ol>
+                                <li class="drop-down-sub-header">Business</li>
+                                    <ol class="table-of-contents-topic drop-down-sub-data">
+                                        <li>Finding Businesses</li>
+                                        <li>Business Management</li>
+                                        <li>Online Store</li>
+                                        <li>Inventory</li>
+                                        <li>Features</li>
+                                    </ol>
+                                <li>Leisure</li>
+                                <li>News</li>
+                                <li>Wellness</li>
+                                <li>Things (IoT)</li>
+                                <li>SocialSpread</li>
+                                <li>OnlineOS</li>
+                                <li>Help</li>
+                            </ol>
+                            <li class="drop-down-header">UX/UI</li>
+                            <ol class="table-of-contents-section drop-down-data">
+                                <li>Site Icons</li>
+                                <li>Main SpreadMenu</li>
+                                <li>Site Navigation</li>
+                                <li>Page Navigation</li>
+                                <li>Element Menu</li>
+                            </ol>
+                            <li class="drop-down-header">Database</li>
+                            <ol class="table-of-contents-section drop-down-data">
+                                <li>User</li>
+                                <li>SpreadKey</li>
+                                <li>SpreadFile</li>
+                                <li>Spread</li>
+                                <li>Business</li>
+                                <li>Course</li>
+                                <li>Class</li>
+                                <li>StorageItem</li>
+                                <li>Conversation</li>
+                                <li>Workout</li>
+                                <li>Exercise</li>
+                                <li>Appointment</li>
+                            </ol>
+                            <li>Backend</li>
+                            <li>Authentication</li>
+                            <li>User Dashboard</li>
+                            <li>Features</li>
+                            <li>Exploration</li>
+                            <li>Index</li>
+                        </ol>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+    <script>
+        const
+            dropDownHeaders = document.querySelectorAll('.drop-down-header')
+
+        dropDownHeaders.forEach(dropDown => {
+            dropDown.addEventListener('click', e => {
+                // dropDown.classList.add('drop-down-open')
+                const dropDownData = dropDown.nextSibling.nextSibling
+                
+                if (dropDown.classList.contains('drop-down-open')) {
+                    dropDown.classList.remove('drop-down-open')
+                    dropDownData.style.height = '0'
+
+                    
+                } else {
+                    dropDown.classList.add('drop-down-open')
+                    dropDownData.style.height = 'auto'
+                    const dropDownSubHeaders = dropDownData.querySelectorAll('.drop-down-sub-header')
+
+                    dropDownSubHeaders.forEach(dropDownSubHeader => {
+                        dropDownSubHeader.addEventListener('click', e => {
+                            const dropDownSubData = dropDownSubHeader.nextSibling.nextSibling
+                            console.log(dropDownSubHeader)
+                            console.log(dropDownSubData)
+
+                            if (dropDownSubHeader.classList.contains('drop-down-sub-open')) {
+                                dropDownSubHeader.classList.remove('drop-down-sub-open')
+                                dropDownSubData.style.height = '0px'
+                            } else {
+                                dropDownSubHeader.classList.add('drop-down-sub-open')
+                                dropDownSubData.style.height = 'auto'
+
+                            }
+                        })
+                    })
+                }
+
+
+
+            })
+        })
+    </script>
+
+</body>
+</html>
