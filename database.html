@@ -323,5 +323,30 @@
     </div>
 
 
+
+
+    <script>
+        const
+            dbModelKeys = document.querySelectorAll('.db-model-key')
+
+        dbModelKeys.forEach(key => {
+            console.log('key: ', key.textContent)
+            const keyValue = key.textContent
+
+            console.log(keyValue.indexOf('.'))
+
+
+            var stringsearch = "."
+                , str = "this. is. foo bar";
+            for (var count = -1, index = -2; index != -1; count++, index = str.indexOf(stringsearch, index + 1))
+
+            if (keyValue.indexOf('.') !== -1) {
+                
+                console.log('INSIDE IF STATEMENT: ', keyValue.indexOf('.'))
+                console.log('THIS IS A PERIOD')
+            }
+        })
+    </script>
+
 </body>
 </html>

@@ -1,3 +1,67 @@
+/* SITE COLOR SCHEME */
+
+/* 
+    color: rgb(221, 70, 176);
+    color: rgb(218, 66, 69);
+    color: rgb(68, 90, 254);
+    color: rgb(7, 212, 255);
+    color: rgb(228, 230, 55);
+    color: rgb(255, 177, 22);
+    color: rgb(65, 212, 50);
+
+
+    TURN INTO CSS VARIABLES --(red) etc.
+*/
+
+
+
+/* FONTS */
+
+@font-face {
+    font-family: 'Tron';
+    src: url('../fonts/Tron.ttf');
+}
+
+
+@font-face {
+    font-family: 'Abnes';
+    src: url('../fonts/abnes.ttf');
+}
+
+
+@font-face {
+    font-family: 'Eva';
+    src: url('../fonts/eva.TTF');
+}
+
+
+@font-face {
+    font-family: 'Hollowed';
+    src: url('../fonts/hybrid_o.ttf');
+}
+
+
+@font-face {
+    font-family: 'Space';
+    src: url('../fonts/space_age.ttf');
+}
+
+
+@font-face {
+    font-family: 'Tiesto';
+    src: url('../fonts/Tiesto.ttf');
+}
+
+
+@font-face {
+    font-family: 'Readable';
+    src: url('../fonts/readable.otf');
+}
+
+@font-face {
+    font-family: 'Readable2';
+    src: url('../fonts/readable_2.ttf');
+}
 * {
     margin: 0;
     padding: 0;
@@ -5,17 +69,19 @@
 }
 
 #vr2dOverlay {
-    background-color: lime;
+    /* background-color: lime; */
     width: 100vw;
     height: 100dvh;
     position: fixed;
+    pointer-events: none;
+    z-index: 5000;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
 }
 .vr-overlay {
-    background-color: #333;
+    /* background-color: #333; */
     width: 100%;
     height: 100%;
     position: relative;
@@ -24,21 +90,92 @@
     position: absolute;
     top: 0;
     left: 50%;
-    width: 50vw;
+    min-width: 300px;
+    max-width: 50vw;
     transform: translateX(-50%);
     border-bottom-left-radius: 1rem;
     border-bottom-right-radius: 1rem;
     background-color: #0000006b;
     box-shadow: 0 10px 12px #00000080;
+    box-shadow: 0 0 20px rgb(7, 212, 255), 0 0 30px rgba(7, 214, 255, 0.37);
     backdrop-filter: blur(4px);
+    box-shadow: 0 0 20px rgb(7, 212, 255), 0 0 30px rgba(7, 214, 255, 0.37), inset 0 -10px 30px rgba(103, 230, 255, 0.5);
+    border: solid 1px rgb(7, 212, 255);
+    border-bottom: solid 3px rgb(7, 212, 255);
+    border-top: none;
 }
 
 .vr-overlay-header-page-title {
     text-align: center;
 }
 .vr-overlay-header-page-title h3 {
-    font-size: 1.5rem;
-    padding: 0.5rem;
-    color: rgb(7, 212, 255);
-    text-shadow: 0 0 4px #000;
+    font-size: 1rem;
+    font-family: Abnes;
+    padding: 0.75rem;
+    color: rgba(7, 214, 255, 0.596);
+    text-shadow: 0 0 4px rgb(103, 230, 255);
+}
+
+.vr-overlay-footer {
+    position: absolute;
+    border-radius: 50%;
+    bottom: -150px;
+    left: 50%;
+    width: 300px;
+    transform: translateX(-50%);
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    background-color: #0000006b;
+    box-shadow: 0 0px 12px #00000080;
+    box-shadow: 0 0 20px rgb(7, 212, 255), 0 0 30px rgba(7, 214, 255, 0.37);
+    backdrop-filter: blur(4px);
+    overflow: hidden;
+}
+
+#vrScene {
+    z-index: 2000;
+}
+#userTouchTraversalBall {
+    position: absolute;
+    /* background-color: rgba(0, 255, 0, 0.267); */
+    width: 300px;
+    height: 300px;
+    display: flex;
+    pointer-events: all;
+    /* user-select: none; */
+    cursor:all-scroll;
+}
+.forwards-backwards {
+    width: 60%;
+    height: 300px;
+}
+.vr-directional-face {
+    /* border: solid 1px red; */
+}
+
+#left {
+    width: 20%;
+    height: 50%;
+}
+
+#right {
+    width: 20%;
+    height: 50%;
+}
+
+#top {
+    height: 25%;
+}
+
+.traversal-ui {
+    position: relative;
+}
+
+#userTouchTraversalBallUI {
+    background: radial-gradient(#000, rgba(7, 212, 255, 0.15));
+    border: solid 1px rgb(7, 212, 255);
+    backdrop-filter: blur(4px);
+    border-radius: 50%;
+        height: 300px;
+        width: 300px;
 }

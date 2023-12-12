@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>oLabs - VR Main Menu</title>
+
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <!-- <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script> -->
+    <!-- <script src="https://aframe.io/releases/0.6.1/aframe.min.js"></script> -->
+
+
+    <script src="https://unpkg.com/aframe-layout-component@5.3.0/dist/aframe-layout-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.3.2/dist/aframe-environment-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+
+    <!-- <script src="https://unpkg.com/aframe-motion-capture-components/dist/aframe-motion-capture-components.min.js"></script> -->
+    
+    <link rel="stylesheet" href="./public/style/vr.css">
+    <script src="./public/logic/vr-main-menu.js"></script>
+
+</head>
+<body>
+
+    <div id="vrScene">
+        <a-scene avatar-recorder fog="type: exponential; color: #222; density: 0" xr-mode-ui="enabled: true">
+            <a-assets>
+                <a-asset-item id="vrSpreadCity" src="./public/media/3d-model/city.glb"></a-asset-item>
+                <a-asset-item id="vrSpreadMenu" src="./public/media/3d-model/vr-spread-menu_1a1a1a.gltf"></a-asset-item>
+                <a-asset-item id="mclaren1" src="./public/media/3d-model/McLaren_1a1a1a.gltf"></a-asset-item>
+                <img id="oLabsLogo2d" src="./public/media/image/rectangular/system/logo/olabs_1a1a1a.png" alt="oLabs Logo">
+
+                    <a-mixin id="cube" geometry="primitive: box"></a-mixin>
+                    <a-mixin id="cube-hovered" material="color: magenta"></a-mixin>
+                    <a-mixin id="cube-selected" material="color: cyan"></a-mixin>
+                    <a-mixin id="red" material="color: red"></a-mixin>
+                    <a-mixin id="green" material="color: green"></a-mixin>
+                    <a-mixin id="blue" material="color: blue"></a-mixin>
+                    <a-mixin id="yellow" material="color: yellow"></a-mixin>
+                    <a-mixin id="sphere" geometry="primitive: sphere"></a-mixin>
+            </a-assets>
+
+<!-- <a-entity light="type: ambient; color: #BBB"></a-entity> -->
+<!-- <a-entity light="type: directional; color: #FFF; intensity: 0.6" position="-0.5 1 1"></a-entity> -->
+
+
+
+    <a-entity position="0 2.2 4">
+        <a-entity camera look-controls wasd-controls>
+            <a-entity position="0 0 -3" geometry="primitive: ring; radiusInner: 0.04; radiusOuter: 0.05;"
+                material="color: cyan; shader: flat" cursor="maxDistance: 30; fuse: true">
+                <a-animation begin="click" easing="ease-in" attribute="scale" fill="forwards" from="0.2 0.2 0.2" to="1 1 1"
+                    dur="150"></a-animation>
+                <a-animation begin="fusing" easing="ease-in" attribute="scale" fill="backwards" from="1 1 1"
+                    to="0.2 0.2 0.2" dur="1500"></a-animation>
+            </a-entity>
+            <!-- <a-box look-at="[camera]" position="0 0.25 -3" color="aqua" scale="2 1 1" material="opacity: 0.175;"></a-box> -->
+        </a-entity>
+    </a-entity>
+
+
+
+<a-entity id="cardinals-container" geometry="type: box;" material="color: red; roughness: 1;" position="0 0 10">
+
+
+    <a-entity layout="type: box; columns: 4; margin: 4; align: center;" position="0 4 -8">
+        <a-image src="#oLabsLogo2d" width="1" height="0.5"></a-image>
+        <a-image src="#oLabsLogo2d" width="1" height="0.5"></a-image>
+        <a-image src="#oLabsLogo2d" width="1" height="0.5"></a-image>
+        <a-image src="#oLabsLogo2d" width="1" height="0.5"></a-image>
+        <a-image src="#oLabsLogo2d" width="1" height="0.5"></a-image>
+        <a-image src="#oLabsLogo2d" width="1" height="0.5"></a-image>
+        <a-image src="#oLabsLogo2d" width="1" height="0.5"></a-image>
+        <a-image src="#oLabsLogo2d" width="1" height="0.5"></a-image>
+    </a-entity>
+
+
+    <a-entity layout="type: box; columns: 4; margin: 4; align: center;" position="-8 4 0" rotation="0 90 0">
+        <a-image src="#oLabsLogo2d" width="1" height="0.5"></a-image>
+        <a-image src="#oLabsLogo2d" width="1" height="0.5"></a-image>
+        <a-image src="#oLabsLogo2d" width="1" height="0.5"></a-image>
+        <a-image src="#oLabsLogo2d" width="1" height="0.5"></a-image>
+        <a-image src="#oLabsLogo2d" width="1" height="0.5"></a-image>
+        <a-image src="#oLabsLogo2d" width="1" height="0.5"></a-image>
+        <a-image src="#oLabsLogo2d" width="1" height="0.5"></a-image>
+        <a-image src="#oLabsLogo2d" width="1" height="0.5"></a-image>
+    </a-entity>
+
+
+    <a-entity layout="type: box; columns: 4; margin: 4; align: center;" position="0 4 8" rotation="0 180 0">
+        <a-image src="#oLabsLogo2d" width="1" height="0.5"></a-image>
+        <a-image src="#oLabsLogo2d" width="1" height="0.5"></a-image>
+        <a-image src="#oLabsLogo2d" width="1" height="0.5"></a-image>
+        <a-image src="#oLabsLogo2d" width="1" height="0.5"></a-image>
+        <a-image src="#oLabsLogo2d" width="1" height="0.5"></a-image>
+        <a-image src="#oLabsLogo2d" width="1" height="0.5"></a-image>
+        <a-image src="#oLabsLogo2d" width="1" height="0.5"></a-image>
+        <a-image src="#oLabsLogo2d" width="1" height="0.5"></a-image>
+    </a-entity>
+
+
+    <a-entity layout="type: box; columns: 4; margin: 4; align: center;" position="8 4 0" rotation="0 -90 0">
+        <a-image src="#oLabsLogo2d" width="1" height="0.5"></a-image>
+        <a-image src="#oLabsLogo2d" width="1" height="0.5"></a-image>
+        <a-image src="#oLabsLogo2d" width="1" height="0.5"></a-image>
+        <a-image src="#oLabsLogo2d" width="1" height="0.5"></a-image>
+        <a-image src="#oLabsLogo2d" width="1" height="0.5"></a-image>
+        <a-image src="#oLabsLogo2d" width="1" height="0.5"></a-image>
+        <a-image src="#oLabsLogo2d" width="1" height="0.5"></a-image>
+        <a-image src="#oLabsLogo2d" width="1" height="0.5"></a-image>
+    </a-entity>
+ 
+
+
+</a-entity>
+
+
+<a-entity id="spreadCityContainer">
+    <a-gltf-model src="#vrSpreadCity" position="250 0 250" scale="1.8 1.8 1.8"></a-gltf-model>
+</a-entity>
+
+<a-entity id="mclaren1">
+    <a-gltf-model src="#mclaren1" position="-6 0.1 -3" scale="1 1 1" rotation="0 32 0"></a-gltf-model>
+</a-entity>
+
+
+
+<a-entity position="0 -0.5 -0.5" rotation="-70 0 0">
+    <a-torus color="aqua" arc="360" radius="0.2" radius-tubular="0.1" rotation="90 0 0" material="color: #000000"
+        geometry="arc: 360; radius: 1.64; radiusTubular: 0.02; segmentsRadial: 37; segmentsTubular: 33"
+        scale="0.15 0.15 1" visible="" position="0.00003 0 -0.00168"></a-torus>
+    <!-- <a-gltf-model src="#vrSpreadMenu" position="0 0 0" scale="0.6 0.6 0.6"></a-gltf-model> -->
+</a-entity>
+
+
+
+
+
+
+<a-light type="directional" position="-30 100 30" color="#FFF" light="intensity: 0.5; castShadow: true"></a-light>
+
+
+            <a-sky color="lightskyblue"></a-sky>
+
+
+
+
+
+        </a-scene>
+
+    </div>
+
+    <div id="vr2dOverlay">
+        <div class="vr-overlay">
+            <div class="vr-overlay-header">
+                <div class="vr-overlay-header-page-title">
+                    <h3>SpreadCity</h3>
+                </div>
+            </div>
+            <div class="vr-overlay-left"></div>
+            <div class="vr-overlay-right"></div>
+            <div class="vr-overlay-footer">
+                <div class="traversal-ui">
+    
+                    <div id="userTouchTraversalBall">
+                        <div class="vr-directional-face" id="left"></div>
+                        <div class="forwards-backwards">
+                            <div class="vr-directional-face" id="top"></div>
+                            <div class="vr-directional-face" id="bottom"></div>
+                        </div>
+                        <div class="vr-directional-face" id="right"></div>
+                    </div>
+                    <div id="userTouchTraversalBallUI"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const
+            top = document.getElementById('#top'),
+            bottom = document.getElementById('#bottom'),
+            left = document.getElementById('#left'),
+            right = document.getElementById('#right'),
+            directions = document.querySelectorAll('.vr-directional-face')
+
+        directions.forEach(direction => {
+            direction.addEventListener('mouseover', e => {
+                console.log(e.target)
+            })
+        })
+
+        console.log('hello')
+    </script>
+</body>
+</html>
