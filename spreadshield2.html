@@ -24,15 +24,19 @@
 <body>
 
     <div id="vrScene">
-        <a-scene avatar-recorder fog="type: exponential; color: #222; density: 0" xr-mode-ui="enabled: true">
+        <a-scene stats avatar-recorder fog="type: exponential; color: #222; density: 0.001" vr-mode="enabled: true;" loading-screen="dotsColor: aqua; backgroundColor: black" reflection="directionalLight:a-light#dirlight;">
             <a-assets>
                 <a-asset-item id="vrSpreadCity" src="./public/media/3d-model/city.glb"></a-asset-item>
                 <a-asset-item id="cityBlock1" src="./public/media/3d-model/city-block_1a.glb"></a-asset-item>
                 <a-asset-item id="vrSpreadMenu" src="./public/media/3d-model/vr-spread-menu_1a1a1a.gltf"></a-asset-item>
                 <a-asset-item id="mclaren1" src="./public/media/3d-model/McLaren_1a1a1a.gltf"></a-asset-item>
-                <a-asset-item id="lambo2" src="./public/media/3d-model/lambo_2a.glb"></a-asset-item>
-                <a-asset-item id="spreadGallery1" src="./public/media/3d-model/spread-gallery-2.glb"></a-asset-item>
-                <a-asset-item id="spreadGallery2" src="./public/media/3d-model/spread-gallery-3.glb"></a-asset-item>
+                <a-asset-item id="charger1" src="./public/media/3d-model/assets/vehicle/terrain/passenger/suv/2021_chevrolet_tahoe_rst-police.glb"></a-asset-item>
+                <a-asset-item id="rrGhost1" src="./public/media/3d-model/assets/vehicle/terrain/passenger/sedan/rolls_royce_ghost.glb"></a-asset-item>
+                <a-asset-item id="lambo2" src="./public/media/3d-model/assets/vehicle/terrain/passenger/convertible/lambo_2a.glb"></a-asset-item>
+                <a-asset-item id="spreadGallery1" src="./public/media/3d-model/assets/gallery/1.glb"></a-asset-item>
+                <a-asset-item id="spreadGallery2" src="./public/media/3d-model/assets/gallery/2.glb"></a-asset-item>
+                <a-asset-item id="spreadGallery3" src="./public/media/3d-model/assets/gallery/3.glb"></a-asset-item>
+                <a-asset-item id="spreadGallery4" src="./public/media/3d-model/assets/gallery/4.glb"></a-asset-item>
                 <img id="oLabsLogo2d" src="./public/media/image/rectangular/system/logo/olabs_1a1a1a.png" alt="oLabs Logo">
 
                     <a-mixin id="cube" geometry="primitive: box"></a-mixin>
@@ -48,6 +52,7 @@
 <!-- <a-entity light="type: ambient; color: #BBB"></a-entity> -->
 <!-- <a-entity light="type: directional; color: #FFF; intensity: 0.6" position="-0.5 1 1"></a-entity> -->
 
+<a-light id="dirlight" intensity="0.5" light="castShadow:true;type:directional" position="1 1 1"></a-light>
 
 
     <a-entity position="0 2.2 0">
@@ -140,15 +145,29 @@
 <a-entity id="spreadGallery2a">
     <a-gltf-model src="#spreadGallery2" position="0 0 0" scale="0.1 0.1 0.1"></a-gltf-model>
 </a-entity> -->
+<!-- <a-entity id="spreadGallery3a">
+    <a-gltf-model src="#spreadGallery3" position="0 0 0" scale="1.5 1.5 1.5"></a-gltf-model>
+</a-entity> -->
+<!-- <a-entity id="spreadGallery4a">
+    <a-gltf-model src="#spreadGallery4" position="0 0 0" scale="1 1 1"></a-gltf-model>
+</a-entity> -->
 
 
 <a-entity id="mclaren1a">
-    <a-gltf-model src="#mclaren1" position="-12 0.03 -6" scale="0.9 0.9 0.9" rotation="0 90 0"></a-gltf-model>
+    <a-gltf-model src="#mclaren1" position="-12 0.03 -6" scale="0.85 0.85 0.85" rotation="0 90 0"></a-gltf-model>
 </a-entity>
 
 
 <a-entity id="lambo2a">
     <a-gltf-model src="#lambo2" position="-4 0.03 -6" scale="1.15 1.15 1.15" rotation="0 90 0" animation-mixer="clip: Hover;"></a-gltf-model>
+</a-entity>
+
+<a-entity id="charger1a">
+    <a-gltf-model src="#charger1" position="8 0.175 7" scale="0.036 0.036 0.036" rotation="0 -10 -5.5" animation-mixer="clip: Hover;"></a-gltf-model>
+</a-entity>
+
+<a-entity id="rrGhost1a">
+    <a-gltf-model src="#rrGhost1" position="5 0.9.5 -6" scale="3.5 3.5 3.5" rotation="-0.8 90 0" animation-mixer="clip: Hover;"></a-gltf-model>
 </a-entity>
 
 
