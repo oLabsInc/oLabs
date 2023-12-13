@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VR 3D</title>
+    <style>
+        #vr3dPlayer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            max-width: 100vw;
+            max-height: 100dvh;
+        }
+        .vr-eyes {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .vr-eye {
+            width: 50vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 0;
+        }
+        #leftEyeDisplay {
+            left: 0;
+        }
+        #rightEyeDisplay {
+            right: 0;
+        }
+        .vr-eye iframe {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="vr3dPlayer">
+        <div class="vr-eyes">
+            <div class="vr-eye" id="leftEyeDisplay">
+                <iframe src="./vr3dL.html" frameborder="0"></iframe>
+            </div>
+            <div class="vr-eye" id="rightEyeDisplay">
+                <iframe src="./vr3dR.html" frameborder="0"></iframe>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

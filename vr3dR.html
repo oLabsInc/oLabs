@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VR Right Eye</title>
+
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <!-- <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script> -->
+    <!-- <script src="https://aframe.io/releases/0.6.1/aframe.min.js"></script> -->
+    
+    
+    <script src="https://unpkg.com/aframe-layout-component@5.3.0/dist/aframe-layout-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.3.2/dist/aframe-environment-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
+    
+    <!-- <script src="https://unpkg.com/aframe-motion-capture-components/dist/aframe-motion-capture-components.min.js"></script> -->
+    
+    <link rel="stylesheet" href="./public/style/vr.css">
+    <script src="./public/logic/vr-main-menu.js"></script>
+    
+    </head>
+<body>
+
+    
+        <div id="vrSceneRight">
+            <a-scene avatar-recorder fog="type: exponential; color: #222; density: 0.001" vr-mode="enabled: true;"
+                loading-screen="dotsColor: aqua; backgroundColor: black" reflection="directionalLight:a-light#dirlight;">
+                <a-assets>
+                    <img id="livingroom" src="./public/media/image/360/dwelling/apartment/1/1.jpg" alt="">
+                    <img id="diningroom" src="./public/media/image/360/dwelling/apartment/1/2.jpg" alt="">
+                    <img id="kitchen" src="./public/media/image/360/dwelling/apartment/1/3.jpg" alt="">
+                    <img id="bedroom" src="./public/media/image/360/dwelling/apartment/1/4.jpg" alt="">
+
+                </a-assets>
+
+                <a-sphere material="src: #bedroom; side: double;" scale="0.1 0.1 0.1" position="0.0025 1.6 0" rotation="0 1.5 0"></a-sphere>
+
+                <!-- <a-sky src="#bedroom"></a-sky> -->
+
+            </a-scene>
+
+        </div>
+
+</body>
+</html>
