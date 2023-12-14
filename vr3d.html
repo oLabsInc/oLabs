@@ -4,7 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VR 3D</title>
+    <link rel="icon" type="image/png" href="./public/media/image/rectangular/system/logo/olabs_1a1a1a.png" />
+
+    <link rel="stylesheet" href="https://use.typekit.net/eny2fmh.css">
+    <link rel="stylesheet" href="./public/style/guide-book.css">
+    <script src="./public/logic/main.js" defer></script>
+    <script src="./public/logic/icons.js"></script>
     <style>
+
+        #turnToLandscape {
+            display: flex;
+            flex-direction: column;
+            align-items: center;            
+            justify-content: space-evenly;
+            position: fixed;
+            z-index: 9990;
+            width: 100vw;
+            height: 100dvh;
+            background-color: #000;
+        }
+
+        #fullscreenButton {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            /* background-color: rgba(7, 214, 255, 0.5); */
+            border-radius: 0.5rem;
+            /* box-shadow: inset 0 0 10px #fff, 0 8px 10px #00000080; */
+            backdrop-filter: blur(10px);
+            z-index: 9990;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #fullscreenButton img {
+            max-width: 40px;
+            max-height: 40px;
+        }
+        .fullscreen-on :fullscreen {
+            background-color: blue;
+        }
+        .hidden {
+            display: none;
+        }
         #vr3dPlayer {
             position: fixed;
             top: 0;
@@ -40,19 +84,101 @@
             width: 100%;
             height: 100%;
         }
+
+        #vrOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100vw;
+            height: 100dvh;
+            background-color: transparent;
+            user-select: none;
+            z-index: 4000;
+        }
+        @media only screen and (orientation: landscape) {
+                #turnToLandscape {
+                    display: none;
+                }
+            }
     </style>
+    
 </head>
 <body>
-    <div id="vr3dPlayer">
-        <div class="vr-eyes">
-            <div class="vr-eye" id="leftEyeDisplay">
-                <iframe src="./vr3dL.html" frameborder="0"></iframe>
-            </div>
-            <div class="vr-eye" id="rightEyeDisplay">
-                <iframe src="./vr3dR.html" frameborder="0"></iframe>
-            </div>
-        </div>
-
+    <div id="turnToLandscape">
+        <h5>Please turn your phone to landscape view to use in VR.</h5>
+        <img src="" alt="">
     </div>
+    <div id="vrGui">
+        <div id="vrOverlay">
+            <div class="vr-overlay">
+                <div id="vrOverlayL">
+                    <div class="vr-overlay-data">
+                        <div class="vr-main-menu" style="display: none;">
+                            <div class="vr-main-menu-item"><a href="#office">Main Office</a></div>
+                            <div class="vr-main-menu-item"><a href="#lab">Main Lab</a></div>
+                            <div class="vr-main-menu-item"><a href="#patio">Patio</a></div>
+                            <div class="vr-main-menu-item"><a href="#linai">Linai</a></div>
+                            <div class="vr-main-menu-item"><a href="#kitchen">Kitchen</a></div>
+                            <div class="vr-main-menu-item"><a href="#livingroom">Livingroom</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="vr-overlay">
+                <div id="vrOverlayR"></div>
+            </div>
+
+        </div>
+        <div id="fullscreenButton">
+            <img id="vrFullscreenOnBtn" src="./public/media/image/rectangular/system/icons/blue-grey/fullscreen.png" alt="Enter Fullscreen Button">
+            <img id="vrFullscreenOffBtn" src="./public/media/image/rectangular/system/icons/blue-grey/fullscreen-exit.png" alt="Exit Fullscreen Button" class="hidden">
+        </div>
+        <div id="vr3dPlayer">
+            <div class="vr-eyes">
+                <div class="vr-eye" id="leftEyeDisplay">
+                    <iframe src="./vr3dL.html" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="vr-eye" id="rightEyeDisplay">
+                    <iframe src="./vr3dR.html" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const
+            vrGui = document.getElementById("vrGui"),
+            vrPlayer = document.getElementById("vr3dPlayer"),
+            toggleFullscreenButton = document.getElementById("fullscreenButton"),
+            vrFullscreenOnBtn = document.getElementById("vrFullscreenOnBtn"),
+            vrFullscreenOffBtn = document.getElementById("vrFullscreenOffBtn")
+
+
+
+
+
+
+        console.log(vrPlayer)
+
+        toggleFullscreenButton.addEventListener('click', e => {
+            if (toggleFullscreenButton.classList.contains('fullscreen-on')) {
+                document.exitFullscreen()
+                toggleFullscreenButton.classList.toggle('fullscreen-on')
+                vrFullscreenOffBtn.classList.toggle('hidden')
+                vrFullscreenOnBtn.classList.toggle('hidden')
+                
+            } else {
+                if (vrGui.requestFullscreen) {
+                    vrGui.requestFullscreen()
+                    toggleFullscreenButton.classList.toggle('fullscreen-on')
+                    vrFullscreenOnBtn.classList.toggle('hidden')
+                    vrFullscreenOffBtn.classList.toggle('hidden')
+                }
+            }
+        })
+    </script>
 </body>
 </html>

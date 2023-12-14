@@ -84,3 +84,9 @@ https://aframe.io/docs/1.5.0/core/utils.html
     <li>c</li>
 </ol>
 
+
+
+# Icon Sets
+
+Blues - https://www.iconfinder.com/search/icons?family=two-color-1
+Blue & Grey - https://www.iconfinder.com/search/icons?family=ocean-4

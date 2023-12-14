@@ -25,7 +25,7 @@
 
     
         <div id="vrSceneLeft">
-            <a-scene avatar-recorder fog="type: exponential; color: #222; density: 0.001" vr-mode="enabled: true;"
+            <a-scene id="aScene" avatar-recorder fog="type: exponential; color: #222; density: 0.001" vr-mode="enabled: true;"
                 loading-screen="dotsColor: aqua; backgroundColor: black" reflection="directionalLight:a-light#dirlight;">
                 <a-assets>
                     <img id="livingroom" src="./public/media/image/360/dwelling/apartment/1/1.jpg" alt="">
@@ -34,14 +34,18 @@
                     <img id="bedroom" src="./public/media/image/360/dwelling/apartment/1/4.jpg" alt="">
 
                 </a-assets>
-
-                <a-sphere material="src: #bedroom; side: double;" scale="0.1 0.1 0.1" position="-0.0025 1.6 0"  rotation="0 -1.5 0"></a-sphere>
-
-                <!-- <a-sky src="#bedroom"></a-sky> -->
+                <a-sphere material="src: #bedroom; side: double;" scale="0.1 0.1 0.1" position="-0.0025 1.6 0"
+                    rotation="0 -1.5 0"></a-sphere>
 
             </a-scene>
 
         </div>
 
+<script>
+    const
+        aScene = document.getElementById('aScene'),
+        leftEye = document.getElementById('leftEye')
+
+</script>
 </body>
 </html>
