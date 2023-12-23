@@ -156,7 +156,7 @@
         <a-entity id="userRig" position="0 2.2 3">
             <a-entity camera look-controls wasd-controls listener mouse-cursor>
                 <a-entity position="0 0 -3" geometry="primitive: ring; radiusInner: 0.04; radiusOuter: 0.05;"
-                    material="color: cyan; shader: flat" cursor="maxDistance: 30; fuse: true">
+                    material="color: orangered; opacity: 0.5; shader: flat" cursor="maxDistance: 30; fuse: true">
                     <a-animation begin="click" easing="ease-in" attribute="scale" fill="forwards" from="0.2 0.2 0.2" to="1 1 1"
                         dur="150"></a-animation>
                     <a-animation begin="fusing" easing="ease-in" attribute="scale" fill="backwards" from="1 1 1"
@@ -167,12 +167,12 @@
 
                     <!-- AR LIGHT -->
                     <a-entity
-                        light="color: #CCC; type: spot; intensity: 0.75; castShadow: true; angle: 12; decay: 0.08; distance: 30; penumbra: 0.25; shadowBias: 0.5; shadowCameraFov: 120; shadowCameraBottom: -3"
-                        data-aframe-default-light="" aframe-injected="" visible="" position="0.25 0.5 -0.25" rotation=""></a-entity>
+                        light="color: #CCC; type: spot; intensity: 0.75; castShadow: true; angle: 12; decay: 0.2; distance: 30; penumbra: 0.30; shadowBias: 0.5; shadowCameraFov: 120; shadowCameraBottom: -3"
+                        data-aframe-default-light="" aframe-injected="" visible="" position="0.00342 0.49673 -0.3" rotation=""></a-entity>
 
                     <a-entity
-                        light="color: #8c8c8c; type: spot; intensity: 0.25; castShadow: true; angle: 18; distance: 50; penumbra: 0.32; shadowBias: 0.5; shadowCameraFov: 120; shadowCameraBottom: -3"
-                        data-aframe-default-light="" aframe-injected="" visible="" position="0.25 0.5 -0.25" rotation=""></a-entity>
+                        light="color: #8c8c8c; type: spot; intensity: 0.2; castShadow: true; angle: 20; distance: 50; penumbra: 0.32; shadowBias: 0.5; shadowCameraFov: 120; shadowCameraBottom: -3"
+                        data-aframe-default-light="" aframe-injected="" visible="" position="0.00356 0.49868 -0.3" rotation=""></a-entity>
 
 
                         <!-- OTHER WEAPONS -->
@@ -219,7 +219,7 @@
 
 
         <!-- SHED #1 -->
-        <a-gltf-model src="#shed1" position="0 -1 0" scale="0.05 0.05 0.05" rotation="0 0 0"></a-gltf-model>
+        <a-gltf-model material="fog: false" src="#shed1" position="0 -1 0" scale="0.05 0.05 0.05" rotation="0 0 0"></a-gltf-model>
 
 
         
