@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VR Right Eye</title>
+    <title>MySpread VR</title>
 
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
 
@@ -22,7 +22,9 @@
     <script src="./public/logic/vr-main-menu.js"></script>
 
     <style>
-        
+        .a-loader-title {
+  color: rgba(7, 214, 255, 1);
+}
         #fullscreenButton {
             position: fixed;
             bottom: 20px;
@@ -82,6 +84,7 @@
             box-shadow: 0 -2px 2px #2222229d, inset 0 0 2px rgba(7, 214, 255, 0.5);
             backdrop-filter: blur(4px);
             z-index: 99997;
+            opacity: 0;
         }
 
         
@@ -129,7 +132,7 @@
 
 
 
-    <a-scene xr-mode-ui="enabled: false" light="defaultLightsEnabled: false">
+    <a-scene fog="type: exponential; color: #0d0d0d; density: 0.15; far: 500" xr-mode-ui="enabled: false" light="defaultLightsEnabled: false" loading-screen="dotsColor: aqua; backgroundColor: black">
         <a-assets>
             <a-asset-item id="mySpreadDashboard" src="./public/media/3d-model/widespread_myspread_vr_dashboard.glb"></a-asset-item>
             <a-asset-item id="deagle" src="./public/media/3d-model/demo-ranch/guns/desert-eagle.glb"></a-asset-item>
@@ -164,7 +167,11 @@
 
                     <!-- AR LIGHT -->
                     <a-entity
-                        light="color: #CCC; type: spot; intensity: 0.53; castShadow: true; angle: 12; decay: 0.08; distance: 30; penumbra: 0.15; shadowBias: 0.5; shadowCameraFov: 120; shadowCameraBottom: -3"
+                        light="color: #CCC; type: spot; intensity: 0.75; castShadow: true; angle: 12; decay: 0.08; distance: 30; penumbra: 0.25; shadowBias: 0.5; shadowCameraFov: 120; shadowCameraBottom: -3"
+                        data-aframe-default-light="" aframe-injected="" visible="" position="0.25 0.5 -0.25" rotation=""></a-entity>
+
+                    <a-entity
+                        light="color: #8c8c8c; type: spot; intensity: 0.25; castShadow: true; angle: 18; distance: 50; penumbra: 0.32; shadowBias: 0.5; shadowCameraFov: 120; shadowCameraBottom: -3"
                         data-aframe-default-light="" aframe-injected="" visible="" position="0.25 0.5 -0.25" rotation=""></a-entity>
 
 
@@ -226,6 +233,13 @@
 
 <a-entity light="color: #201d1d; type: point; intensity: 1.67; castShadow: true; decay: 0.09"
     data-aframe-default-light="" aframe-injected="" visible="" position="0.76143 3.23952 0"></a-entity>
+
+
+
+        <!-- LIGHT #2 -->
+
+        <a-entity light="color: #424242; type: spot; intensity: 0.2; castShadow: true; decay: 0.09" data-aframe-default-light=""
+            aframe-injected="" visible="" position="0.761 30 0" rotation="-90 0 0"></a-entity>
 
 
         <a-sky color="#010101"></a-sky>
