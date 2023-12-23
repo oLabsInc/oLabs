@@ -83,6 +83,8 @@
             backdrop-filter: blur(4px);
             z-index: 99997;
         }
+
+        
     </style>
 </head>
 
@@ -127,7 +129,7 @@
 
 
 
-    <a-scene xr-mode-ui="enabled: false">
+    <a-scene xr-mode-ui="enabled: false" light="defaultLightsEnabled: false">
         <a-assets>
             <a-asset-item id="mySpreadDashboard" src="./public/media/3d-model/widespread_myspread_vr_dashboard.glb"></a-asset-item>
             <a-asset-item id="deagle" src="./public/media/3d-model/demo-ranch/guns/desert-eagle.glb"></a-asset-item>
@@ -159,6 +161,14 @@
                 </a-entity>
                 <a-entity id="currentWeapon" position="0.25 -0.75 -0.75">
                     <a-gltf-model src="#ar15" position="0 0.3 0.2" scale="0.25 0.25 0.25" rotation="0 -90 0"></a-gltf-model>
+
+                    <!-- AR LIGHT -->
+                    <a-entity
+                        light="color: #CCC; type: spot; intensity: 0.53; castShadow: true; angle: 12; decay: 0.08; distance: 30; penumbra: 0.15; shadowBias: 0.5; shadowCameraFov: 120; shadowCameraBottom: -3"
+                        data-aframe-default-light="" aframe-injected="" visible="" position="0.25 0.5 -0.25" rotation=""></a-entity>
+
+
+                        <!-- OTHER WEAPONS -->
                     <!-- <a-gltf-model src="#mossberg" position="0 0.2 -0.25" scale="1 1 1" rotation="0 -90 0"></a-gltf-model> -->
                     <!-- <a-gltf-model src="#deagle" position="0 0.5 0" scale="0.001 0.001 0.001" rotation="0 180 0"></a-gltf-model> -->
 
@@ -169,20 +179,56 @@
         
 
         <!-- <a-gltf-model src="#lambo2" position="7.9 -0.13 3.8" scale="1 1 1" rotation="0 -10 0" animation-mixer="loop: pingpong;"></a-gltf-model> -->
-        <a-gltf-model src="#lambo2" position="7.9 0.79891 4.81603" scale="0.8 0.8 0.8" rotation="0 -10 0"
-            animation-mixer="loop: pingpong"
-            gltf-model="./public/media/3d-model/assets/vehicle/terrain/passenger/convertible/lambo_2b.glb"></a-gltf-model>
+<a-entity id="vehicle" position="-0.13851 0 0.56889" visible="">
+
+    <!-- 3D Model of Vehicle-->
+    <a-gltf-model src="#lambo2" position="7.9 0.79891 4.81603" scale="0.8 0.8 0.8" rotation="0 -10 0"
+        animation-mixer="loop: pingpong"
+        gltf-model="./public/media/3d-model/assets/vehicle/terrain/passenger/convertible/lambo_2b.glb"></a-gltf-model>
+
+    <!-- Vehicle FRONT LEFT Light #1 -->
+        <a-entity
+            light="color: #abd8d8; type: spot; intensity: 3.68; castShadow: true; angle: 65; decay: 0.58; distance: 25.13; penumbra: 1; shadowBias: 2.12; shadowCameraFov: 120; shadowCameraBottom: -3; groundColor: #1a3233"
+            data-aframe-default-light="" aframe-injected="" visible="" position="8.49084 0.92195 6.04638"
+            rotation="0 175 0"></a-entity>
+
+    <!-- Vehicle FRONT RIGHT Light #1 -->
+<a-entity
+    light="color: #abd8d8; type: spot; intensity: 3.68; castShadow: true; angle: 65; decay: 0.58; distance: 25.13; penumbra: 1; shadowBias: 2.12; shadowCameraFov: 120; shadowCameraBottom: -3; groundColor: #1a3233"
+    data-aframe-default-light="" aframe-injected="" visible="" position="6.31798 1.07566 6.67857"
+    rotation="0 175 0"></a-entity>
 
 
-        <a-gltf-model src="#zombie1" position="0 0.025 -5" scale="1.2 1.2 1.2" rotation="0 0 0" animation-mixer></a-gltf-model>
+
+</a-entity>
+
+
+
+        <!-- ZOMBIE #1 -->
+        <a-gltf-model src="#zombie1" position="-3.55467 0.025 -4.40201" scale="1.2 1.2 1.2" rotation="0 32.10740892354107 0"
+            animation-mixer="duration: 10; loop: pingpong; timeScale: 0.3"
+            gltf-model="./public/media/3d-model/demo-ranch/zombies/zombie.glb"></a-gltf-model>
+
+
+
+        <!-- SHED #1 -->
         <a-gltf-model src="#shed1" position="0 -1 0" scale="0.05 0.05 0.05" rotation="0 0 0"></a-gltf-model>
-        <a-gltf-model src="#forest" position="-33 -2 -20" scale="10 10 10" rotation="0 0 0"></a-gltf-model>
+
+
         
-<a-entity light="color: #BBB; type: point; intensity: 0.15" data-aframe-default-light="" aframe-injected=""
-    visible=""></a-entity>
+        <!-- FOREST #1 -->
+        <a-gltf-model src="#forest" position="-32.17 -2 -20" scale="9.5 10 9" rotation=""
+            gltf-model="./public/media/3d-model/demo-ranch/landscape/forest.glb"></a-gltf-model>
+        
+        
+        
+        <!-- LIGHT #1 -->
+
+<a-entity light="color: #201d1d; type: point; intensity: 1.67; castShadow: true; decay: 0.09"
+    data-aframe-default-light="" aframe-injected="" visible="" position="0.76143 3.23952 0"></a-entity>
 
 
-        <a-sky color="lightskyblue"></a-sky>
+        <a-sky color="#010101"></a-sky>
     </a-scene>
 
 
