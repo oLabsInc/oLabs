@@ -147,7 +147,11 @@
  -->
 
 
-            <a-scene fog="type: exponential; color: #171717; density: 0.0; far: 500" xr-mode-ui="enabled: false"
+            <a-scene fog="color: #fff; density: 0; far: 500; near: 0" xr-mode-ui="enabled: false"
+            renderer="antialias: true;
+                   colorManagement: true;
+                   sortObjects: true;
+                   physicallyCorrectLights: false;"
                 light="defaultLightsEnabled: false" loading-screen="dotsColor: aqua; backgroundColor: black">
                 <a-assets>
                     <a-asset-item id="mySpreadDashboard"
@@ -167,6 +171,8 @@
                         src="./public/media/3d-model/demo-ranch/landscape/forest.glb"></a-asset-item>
                     <a-asset-item id="excavator"
                         src="./public/media/3d-model/excavator_cat.glb"></a-asset-item>
+                    <a-asset-item id="crane"
+                        src="./public/media/3d-model/road_roller_truck.glb"></a-asset-item>
                     <a-asset-item id="digSite"
                         src="./public/media/3d-model/house-frame_2.glb"></a-asset-item>
 
@@ -196,7 +202,7 @@
                 <!-- Ambience Background Sound -->
                 <a-sound src="src: #ambience1" autoplay="true" position="0 0 0" preload="auto"></a-sound>
 
-                <a-entity id="userRig" position="0 2.2 3">
+                <a-entity id="userRig" position="0 2.9 3">
                     <a-entity camera look-controls wasd-controls listener mouse-cursor>
                         <a-entity position="0 0 -3" geometry="primitive: ring; radiusInner: 0.04; radiusOuter: 0.05;"
                             material="color: orangered; opacity: 0.5; shader: flat"
@@ -210,11 +216,24 @@
                     </a-entity>
                 </a-entity>
 
+<!-- <a-entity id="userRig" position="0 3.89 3">
+    <a-entity camera="" look-controls="" wasd-controls="" listener="" mouse-cursor=""
+        position="-10.03489666434339 0 -2.753737217104123" rotation="0 0 0"
+        data-aframe-inspector-original-camera="">
+        <a-entity position="0 0 -3" geometry="primitive: ring; radiusInner: 0.04; radiusOuter: 0.05"
+            material="color: orangered; opacity: 0.5; shader: flat" cursor="fuse: true" raycaster="">
+            <a-animation begin="click" easing="ease-in" attribute="scale" fill="forwards" from="0.2 0.2 0.2" to="1 1 1"
+                dur="150"></a-animation>
+            <a-animation begin="fusing" easing="ease-in" attribute="scale" fill="backwards" from="1 1 1"
+                to="0.2 0.2 0.2" dur="1500"></a-animation>
+        </a-entity>
 
+    </a-entity>
+</a-entity> -->
 
 <a-entity position="0 -0.5 0" geometry="depth: 10; width: 20"
 shadow="cast: false; receive: true;"
-    material="roughnessMap: #cobbleRgh; abmbientOcclusionMap: #cobbleAo; displacementMap: #cobbleHt; metalnessMap: #cobbleMetal; normalMap: #cobbleNorm; src: #cobbleImg"></a-entity>
+    material="roughnessMap: #cobbleRgh; roughness: 0.7; abmbientOcclusionMap: #cobbleAo; displacementMap: #cobbleHt; metalnessMap: #cobbleMetal; normalMap: #cobbleNorm; src: #cobbleImg"></a-entity>
 
 <!-- GROUND #1 -->
 
@@ -230,63 +249,70 @@ shadow="cast: false; receive: true;"
 
 
 
-                <!-- EXCAVATOR #1 -->
-<a-gltf-model src="#excavator" position="-10.1405 3.72 1.65109" scale="100 100 100" rotation=""
-    gltf-model="./public/media/3d-model/excavator_cat.glb" shadow="cast: true; receive: true;"></a-gltf-model>
+                <!-- CRANE #1 -->
+<a-gltf-model src="#crane" position="24.38624 1.121 15.15579" scale="4 4 4" rotation="0 -29.999999999999996 0"
+    gltf-model="./public/media/3d-model/road_roller_truck.glb" shadow=""></a-gltf-model>
 
+                <!-- EXCAVATOR #1 -->
+<a-gltf-model src="#excavator" position="-10.021 3.72 2.04182" scale="100 100 100" rotation="0 20 0"
+    gltf-model="./public/media/3d-model/excavator_cat.glb" shadow=""></a-gltf-model>
+
+    <!-- <a-gltf-model src="#excavator" position="-10.02118 3.72 -1.43001" scale="100 100 100" rotation="0 180 0"
+        gltf-model="./public/media/3d-model/excavator_cat.glb" shadow=""></a-gltf-model> -->
                 <!-- LOADER #1 -->
 <a-gltf-model src="#skidSteer" position="-27.97658 1.098 14.3394" scale="" rotation="0 45 0"
     gltf-model="./public/media/3d-model/loader.glb" shadow=""></a-gltf-model>
 
                 <!-- FOREST #1 -->
-<a-gltf-model src="#forest" position="11.97911 -11.30162 -76.12449" scale="9.5 10 9" rotation="0 -35.61 0"
+<a-gltf-model src="#forest" position="-24.49553 -11.302 -82.9855" scale="9.5 10 9" rotation=""
     gltf-model="./public/media/3d-model/demo-ranch/landscape/forest.glb" shadow=""></a-gltf-model>
 
     <!-- FOREST #2 -->
 <a-gltf-model src="#forest" position="-98.26915 -14.33885 -5.1899" scale="9.5 10 9" rotation="0 -33.89 0"
-    gltf-model="./public/media/3d-model/demo-ranch/landscape/forest.glb" shadow=""></a-gltf-model>
+    gltf-model="./public/media/3d-model/demo-ranch/landscape/forest.glb" shadow="receive:true; cast: false;"></a-gltf-model>
 
 
 <a-gltf-model src="#forest" position="-120.05247 -2.82 118.0733" scale="9.5 10 9" rotation="0 100 0"
-    gltf-model="./public/media/3d-model/demo-ranch/landscape/forest.glb" shadow=""></a-gltf-model>
+    gltf-model="./public/media/3d-model/demo-ranch/landscape/forest.glb" shadow="receive:true; cast: false;"></a-gltf-model>
 
 
 
 <a-gltf-model src="#forest" position="96.531 -10.79 -13.749" scale="9.5 10 9" rotation="0 -100 0"
-    gltf-model="./public/media/3d-model/demo-ranch/landscape/forest.glb" shadow=""></a-gltf-model>
+    gltf-model="./public/media/3d-model/demo-ranch/landscape/forest.glb" shadow="receive:true; cast: false;"></a-gltf-model>
 
 
 
 <a-gltf-model src="#forest" position="141.3333 0 130.1178" scale="9.5 10 9" rotation="0 -100 0"
-    gltf-model="./public/media/3d-model/demo-ranch/landscape/forest.glb" shadow=""></a-gltf-model>
+    gltf-model="./public/media/3d-model/demo-ranch/landscape/forest.glb" shadow="receive:true; cast: false;"></a-gltf-model>
 
 
 <a-gltf-model src="#forest" position="43.90538 0 241.36398" scale="9.5 10 9" rotation="0 -80 0"
-    gltf-model="./public/media/3d-model/demo-ranch/landscape/forest.glb" shadow=""></a-gltf-model>
+    gltf-model="./public/media/3d-model/demo-ranch/landscape/forest.glb" shadow="receive:true; cast: false;"></a-gltf-model>
 
 
 
 
                 <!-- LIGHT #1 -->
-<a-entity light="color: #201d1d; type: point; intensity: 11.52; castShadow: true; decay: 0.09"
-    data-aframe-default-light="" aframe-injected="" visible="" position="-35.03959 21.08195 -8.76827"
-    shadow="receive: false"></a-entity>
+<a-entity light="color: #201d1d; type: point; intensity: 5; castShadow: true; decay: 0.09" data-aframe-default-light=""
+    aframe-injected="" visible="" position="-35.03959 21.08195 -8.76827" shadow="receive: false"></a-entity>
 
 
 
                 <!-- LIGHT #2 -->
 
-                <a-entity light="color: #424242; type: spot; intensity: 1; castShadow: true; decay: 0.09"
-                    data-aframe-default-light="" aframe-injected="" visible="" position="0.761 30 0"
-                    rotation="-90 0 0"></a-entity>
+<a-entity
+    light="color: #424242; type: spot; intensity: 20; castShadow: true; decay: 1.38; groundColor: #ffffff; distance: 2.09; penumbra: 0.32; shadowBias: 0.62"
+    data-aframe-default-light="" aframe-injected="" visible="" position="0.761 100 0" rotation="-90 0 0"></a-entity>
 
 
                 <!-- AMBIENT -->
 
-                <a-entity light="color: #424242; type: ambient; intensity: 1; castShadow: true; decay: 0.09"
-                    data-aframe-default-light="" aframe-injected="" visible="" position="0.761 30 0"
-                    rotation="-90 0 0"></a-entity>
+<a-entity light="color: #878787; type: ambient; intensity: 0.2; castShadow: true; decay: 0.09"
+    data-aframe-default-light="" aframe-injected="" visible="" position="0.761 30 0" rotation="-90 0 0"></a-entity>
 
+
+
+    
 
                 <a-sky color="rgb(100, 196, 255)"></a-sky>
             </a-scene>
@@ -295,7 +321,7 @@ shadow="cast: false; receive: true;"
 
         </div>
     </div>
-    <div style="color: rgb(100, 196, 255);"></div>
+
     <script>
         const
             vrGui = document.getElementById("vrGui"),
