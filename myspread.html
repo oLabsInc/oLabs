@@ -113,6 +113,7 @@
             </div>
 
         </div>
+
         <div id="fullscreenButton">
             <img id="vrFullscreenOnBtn" src="./public/media/image/rectangular/system/icons/blue-grey/fullscreen.png" alt="Enter Fullscreen Button">
             <img id="vrFullscreenOffBtn" src="./public/media/image/rectangular/system/icons/blue-grey/fullscreen-exit.png" alt="Exit Fullscreen Button" class="hidden">
@@ -265,7 +266,7 @@
 
 
 
-    </div>
+        </div>
     </div>
     <script>
         const
@@ -273,10 +274,10 @@
             vrPlayer = document.getElementById("vr3dPlayer"),
             toggleFullscreenButton = document.getElementById("fullscreenButton"),
             vrFullscreenOnBtn = document.getElementById("vrFullscreenOnBtn"),
-            vrFullscreenOffBtn = document.getElementById("vrFullscreenOffBtn")
+            vrFullscreenOffBtn = document.getElementById("vrFullscreenOffBtn"),
             walkF = document.getElementById("walkF"),
             userRig = document.getElementById("userRig")
-    
+
     AFRAME.registerComponent('listener', {
 
         tick: function () {

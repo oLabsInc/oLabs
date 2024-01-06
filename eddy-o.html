@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySpread VR</title>
+
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+
+    <script src="https://unpkg.com/aframe-layout-component@5.3.0/dist/aframe-layout-component.min.js"></script>
+    <script
+        src="https://unpkg.com/aframe-environment-component@1.3.2/dist/aframe-environment-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
+    <script
+        src="https://rawgit.com/mayognaise/aframe-mouse-cursor-component/master/dist/aframe-mouse-cursor-component.min.js"></script>
+
+
+
+    <link rel="stylesheet" href="./public/style/vr.css">
+    <script src="./public/logic/vr-main-menu.js"></script>
+
+    <style>
+        .a-loader-title {
+            color: rgba(7, 214, 255, 1);
+        }
+
+        #fullscreenButton {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 0.5rem;
+            /* box-shadow: inset 0 0 10px #fff, 0 8px 10px #00000080; */
+            backdrop-filter: blur(10px);
+            z-index: 9990;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+            cursor: pointer;
+            box-shadow: 0 6px 4px #2222229d, inset 0 0 2px rgba(7, 214, 255, 0.5);
+            border: solid 1px rgba(7, 214, 255, 0.75);
+            filter: hue-rotate(20deg);
+        }
+
+        #fullscreenButton img {
+            max-width: 40px;
+            max-height: 40px;
+            filter: drop-shadow(0 0 3px rgba(7, 214, 255, 0.5));
+            opacity: 0.5;
+            transition: ease-in-out 150ms;
+        }
+
+        #fullscreenButton img:hover {
+            opacity: 1;
+        }
+
+        .fullscreen-on :fullscreen {
+            /* background-color: blue; */
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #walkF {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 75px;
+            background-color: rgba(7, 214, 255, 0.25);
+            user-select: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: rgba(7, 214, 255, 1);
+            padding-top: 10px;
+            font-family: 'Eva';
+            cursor: all-scroll;
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+            box-shadow: 0 -2px 2px #2222229d, inset 0 0 2px rgba(7, 214, 255, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 99997;
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="vrGui">
+        <div id="vrOverlay">
+            <div class="vr-overlay">
+                <div id="vrOverlayL">
+                    <div class="vr-overlay-data">
+                        <div class="vr-main-menu" style="display: none;">
+                            <div class="vr-main-menu-item"><a href="#office">Main Office</a></div>
+                            <div class="vr-main-menu-item"><a href="#lab">Main Lab</a></div>
+                            <div class="vr-main-menu-item"><a href="#patio">Patio</a></div>
+                            <div class="vr-main-menu-item"><a href="#linai">Linai</a></div>
+                            <div class="vr-main-menu-item"><a href="#kitchen">Kitchen</a></div>
+                            <div class="vr-main-menu-item"><a href="#livingroom">Livingroom</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="vr-overlay">
+                <div id="vrOverlayR"></div>
+            </div>
+
+        </div>
+
+        <div id="fullscreenButton">
+            <img id="vrFullscreenOnBtn" src="./public/media/image/rectangular/system/icons/blue-grey/fullscreen.png"
+                alt="Enter Fullscreen Button">
+            <img id="vrFullscreenOffBtn"
+                src="./public/media/image/rectangular/system/icons/blue-grey/fullscreen-exit.png"
+                alt="Exit Fullscreen Button" class="hidden">
+        </div>
+
+        <div id="walkF">^</div>
+        <div id="vr3dPlayer">
+            <!-- <div class="vr-eyes">
+                <div class="vr-eye" id="leftEyeDisplay">
+                    <iframe src="./vr3dL.html" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="vr-eye" id="rightEyeDisplay">
+                    <iframe src="./vr3dR.html" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div> -->
+
+            <!-- SMOKE SHOP GPS LL: 28.861966608275306, -82.04094696396632 -->
+            <!-- 
+28,51.4308N
+82,02,27.409W
+0.00
+
+
+ -->
+
+
+            <a-scene fog="type: exponential; color: #171717; density: 0.0; far: 500" xr-mode-ui="enabled: false"
+                light="defaultLightsEnabled: false" loading-screen="dotsColor: aqua; backgroundColor: black">
+                <a-assets>
+                    <a-asset-item id="mySpreadDashboard"
+                        src="./public/media/3d-model/widespread_myspread_vr_dashboard.glb"></a-asset-item>
+                    <a-asset-item id="deagle"
+                        src="./public/media/3d-model/demo-ranch/guns/desert-eagle.glb"></a-asset-item>
+                    <a-asset-item id="mossberg"
+                        src="./public/media/3d-model/demo-ranch/guns/mossberg-500.glb"></a-asset-item>
+                    <a-asset-item id="ar15" src="./public/media/3d-model/demo-ranch/guns/ar15.glb"></a-asset-item>
+
+
+                    <a-asset-item id="mansion3"
+                        src="./public/media/3d-model/assets/dwelling/mansion/mansion_3.glb"></a-asset-item>
+                    <a-asset-item id="skidSteer"
+                        src="./public/media/3d-model/loader.glb"></a-asset-item>
+                    <a-asset-item id="forest"
+                        src="./public/media/3d-model/demo-ranch/landscape/forest.glb"></a-asset-item>
+                    <a-asset-item id="excavator"
+                        src="./public/media/3d-model/excavator_cat.glb"></a-asset-item>
+                    <a-asset-item id="digSite"
+                        src="./public/media/3d-model/house-frame_2.glb"></a-asset-item>
+
+
+
+
+                    <img id="cobbleImg" src="./public/media/image/textures/cobblestone_1/dungeon-stone1-albedo2.png" alt="">
+                    <img id="cobbleNrm" src="./public/media/image/textures/cobblestone_1/dungeon-stone1-normal.png" alt="">
+                    <img id="cobbleMetal" src="./public/media/image/textures/cobblestone_1/dungeon-stone1-metalness.png" alt="">
+                    <img id="cobbleHt" src="./public/media/image/textures/cobblestone_1/dungeon-stone1-height.png" alt="">
+                    <img id="cobbleRgh" src="./public/media/image/textures/cobblestone_1/dungeon-stone1-roughness.png" alt="">
+                    <img id="cobbleAo" src="./public/media/image/textures/cobblestone_1/dungeon-stone1-ao.png" alt="">
+                    <img id="grassImg" src="./public/media/image/textures/grass_1/wispy-grass-meadow_albedo.png" alt="">
+                    <img id="grassNorm" src="./public/media/image/textures/grass_1/wispy-grass-meadow_normal-ogl.png" alt="">
+                    <img id="grassRough" src="./public/media/image/textures/grass_1/wispy-grass-meadow_roughness.png" alt="">
+                    <img id="grassAo" src="./public/media/image/textures/grass_1/wispy-grass-meadow_ao.png" alt="">
+                    <img id="grassHt" src="./public/media/image/textures/grass_1/wispy-grass-meadow_height.png" alt="">
+                    <img id="grassMetal" src="./public/media/image/textures/grass_1/wispy-grass-meadow_metallic.png" alt="">
+
+
+
+
+                    <audio id="ambience1" src="./public/media/audio/ambience/outdoors/forest/night/1.mp3"></audio>
+                </a-assets>
+
+
+                <!-- Ambience Background Sound -->
+                <a-sound src="src: #ambience1" autoplay="true" position="0 0 0" preload="auto"></a-sound>
+
+                <a-entity id="userRig" position="0 2.2 3">
+                    <a-entity camera look-controls wasd-controls listener mouse-cursor>
+                        <a-entity position="0 0 -3" geometry="primitive: ring; radiusInner: 0.04; radiusOuter: 0.05;"
+                            material="color: orangered; opacity: 0.5; shader: flat"
+                            cursor="maxDistance: 30; fuse: true">
+                            <a-animation begin="click" easing="ease-in" attribute="scale" fill="forwards"
+                                from="0.2 0.2 0.2" to="1 1 1" dur="150"></a-animation>
+                            <a-animation begin="fusing" easing="ease-in" attribute="scale" fill="backwards" from="1 1 1"
+                                to="0.2 0.2 0.2" dur="1500"></a-animation>
+                        </a-entity>
+
+                    </a-entity>
+                </a-entity>
+
+
+
+<a-entity position="0 -0.5 0" geometry="depth: 10; width: 20"
+shadow="cast: false; receive: true;"
+    material="roughnessMap: #cobbleRgh; abmbientOcclusionMap: #cobbleAo; displacementMap: #cobbleHt; metalnessMap: #cobbleMetal; normalMap: #cobbleNorm; src: #cobbleImg"></a-entity>
+
+<!-- GROUND #1 -->
+
+<a-entity geometry="primitive: circle; segments: 200" rotation="-90 0 0" scale="100 100 100" position="0 1.135 95"
+shadow="cast: false; receive: true;"
+    material="color: #ffffff; repeat: 40 40; normalMap: #grassNorm; ambientOcclusionMap: #grassAo; ambientOcclusionTextureRepeat: 40 40; roughnessMap: #grassRough; roughnessTextureRepeat: 40 40; metalnessMap: #grassMetal; metalnessTextureRepeat: 40 40; normalScale: 40 40; roughnessMap: #grassRough; roughnessTextureRepeat: 40 40; src: #grassImg"></a-entity>
+
+                <!-- HOUSE FRAME #1 -->
+<a-gltf-model src="#digSite" position="-4.51321 1.2597 10.57582" scale="0.001 0.001 0.001" rotation="0 -90 0"
+    gltf-model="./public/media/3d-model/house-frame_2.glb" shadow=""></a-gltf-model>
+<a-gltf-model src="#digSite" position="-13.55346 1.2597 31.23692" scale="0.001 0.001 0.001" rotation=""
+    gltf-model="./public/media/3d-model/house-frame_2.glb" shadow=""></a-gltf-model>
+
+
+
+                <!-- EXCAVATOR #1 -->
+<a-gltf-model src="#excavator" position="-10.1405 3.72 1.65109" scale="100 100 100" rotation=""
+    gltf-model="./public/media/3d-model/excavator_cat.glb" shadow="cast: true; receive: true;"></a-gltf-model>
+
+                <!-- LOADER #1 -->
+<a-gltf-model src="#skidSteer" position="-27.97658 1.098 14.3394" scale="" rotation="0 45 0"
+    gltf-model="./public/media/3d-model/loader.glb" shadow=""></a-gltf-model>
+
+                <!-- FOREST #1 -->
+<a-gltf-model src="#forest" position="11.97911 -11.30162 -76.12449" scale="9.5 10 9" rotation="0 -35.61 0"
+    gltf-model="./public/media/3d-model/demo-ranch/landscape/forest.glb" shadow=""></a-gltf-model>
+
+    <!-- FOREST #2 -->
+<a-gltf-model src="#forest" position="-98.26915 -14.33885 -5.1899" scale="9.5 10 9" rotation="0 -33.89 0"
+    gltf-model="./public/media/3d-model/demo-ranch/landscape/forest.glb" shadow=""></a-gltf-model>
+
+
+<a-gltf-model src="#forest" position="-120.05247 -2.82 118.0733" scale="9.5 10 9" rotation="0 100 0"
+    gltf-model="./public/media/3d-model/demo-ranch/landscape/forest.glb" shadow=""></a-gltf-model>
+
+
+
+<a-gltf-model src="#forest" position="96.531 -10.79 -13.749" scale="9.5 10 9" rotation="0 -100 0"
+    gltf-model="./public/media/3d-model/demo-ranch/landscape/forest.glb" shadow=""></a-gltf-model>
+
+
+
+<a-gltf-model src="#forest" position="141.3333 0 130.1178" scale="9.5 10 9" rotation="0 -100 0"
+    gltf-model="./public/media/3d-model/demo-ranch/landscape/forest.glb" shadow=""></a-gltf-model>
+
+
+<a-gltf-model src="#forest" position="43.90538 0 241.36398" scale="9.5 10 9" rotation="0 -80 0"
+    gltf-model="./public/media/3d-model/demo-ranch/landscape/forest.glb" shadow=""></a-gltf-model>
+
+
+
+
+                <!-- LIGHT #1 -->
+<a-entity light="color: #201d1d; type: point; intensity: 11.52; castShadow: true; decay: 0.09"
+    data-aframe-default-light="" aframe-injected="" visible="" position="-35.03959 21.08195 -8.76827"
+    shadow="receive: false"></a-entity>
+
+
+
+                <!-- LIGHT #2 -->
+
+                <a-entity light="color: #424242; type: spot; intensity: 1; castShadow: true; decay: 0.09"
+                    data-aframe-default-light="" aframe-injected="" visible="" position="0.761 30 0"
+                    rotation="-90 0 0"></a-entity>
+
+
+                <!-- AMBIENT -->
+
+                <a-entity light="color: #424242; type: ambient; intensity: 1; castShadow: true; decay: 0.09"
+                    data-aframe-default-light="" aframe-injected="" visible="" position="0.761 30 0"
+                    rotation="-90 0 0"></a-entity>
+
+
+                <a-sky color="rgb(100, 196, 255)"></a-sky>
+            </a-scene>
+
+
+
+        </div>
+    </div>
+    <div style="color: rgb(100, 196, 255);"></div>
+    <script>
+        const
+            vrGui = document.getElementById("vrGui"),
+            vrPlayer = document.getElementById("vr3dPlayer"),
+            toggleFullscreenButton = document.getElementById("fullscreenButton"),
+            vrFullscreenOnBtn = document.getElementById("vrFullscreenOnBtn"),
+            vrFullscreenOffBtn = document.getElementById("vrFullscreenOffBtn"),
+            walkF = document.getElementById("walkF"),
+            userRig = document.getElementById("userRig")
+
+        AFRAME.registerComponent('listener', {
+
+            tick: function () {
+                // console.log(this.el.getAttribute('position'));
+
+                // moveRigF(this.el.getAttribute('position'))
+
+                const newPosition = this.el.getAttribute('position')
+
+                // moveRigF(newPosition)
+                // getCurrentPos(newPosition)
+                // console.log(newPosition)
+                // userRig.setAttribute('position')
+            },
+            moveF: function () {
+                walkF.addEventListener('click', e => {
+                    console.log(newPosition); // 10
+                    // this.el.querySelector('[camera]').setAttribute('position', 'z', '1');
+                    console.log(newPosition); // 15
+                    // getCurrentPos()
+
+                })
+            }
+        });
+        document.querySelector('#walkF').addEventListener('click', function () {
+            moveRigF(userRig.querySelector('[camera]').getAttribute('position'))
+            // userRig.setAttribute('position', 'z: ', 1);
+            console.log('I was clicked!');
+            console.log(userRig.querySelector('[camera]').getAttribute('position'))
+        });
+
+        function getCurrentPos(pos) {
+            moveRigF(pos)
+        }
+
+
+        function moveRigF(oldCoords) {
+
+            // console.log(oldCoords)
+            const oldZ = oldCoords.z
+            const newZ = oldZ - 1
+            userRig.querySelector('[camera]').setAttribute('position', { x: oldCoords.x, y: oldCoords.y, z: newZ })
+            // console.log('oldZ: ', oldZ)
+        }
+
+        toggleFullscreenButton.addEventListener('click', e => {
+            if (toggleFullscreenButton.classList.contains('fullscreen-on')) {
+                document.exitFullscreen()
+                toggleFullscreenButton.classList.toggle('fullscreen-on')
+                vrFullscreenOffBtn.classList.toggle('hidden')
+                vrFullscreenOnBtn.classList.toggle('hidden')
+
+            } else {
+                if (vrGui.requestFullscreen) {
+                    vrGui.requestFullscreen()
+                    toggleFullscreenButton.classList.toggle('fullscreen-on')
+                    vrFullscreenOnBtn.classList.toggle('hidden')
+                    vrFullscreenOffBtn.classList.toggle('hidden')
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>
