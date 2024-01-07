@@ -14,10 +14,8 @@
     <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
-    <script
-        src="https://rawgit.com/mayognaise/aframe-mouse-cursor-component/master/dist/aframe-mouse-cursor-component.min.js"></script>
-
-
+    <script src="https://rawgit.com/mayognaise/aframe-mouse-cursor-component/master/dist/aframe-mouse-cursor-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-text-geometry-component@0.5.1/dist/aframe-text-geometry-component.min.js"></script>
 
     <link rel="stylesheet" href="./public/style/vr.css">
     <script src="./public/logic/vr-main-menu.js"></script>
@@ -141,7 +139,7 @@
 
 
 
-            <a-scene fog="color: #000; density: 0.25; far: 150; near: 1" xr-mode-ui="enabled: false"
+            <a-scene fog="type: linear; color: #111; density: 0.00025; far: 250; near: 0" xr-mode-ui="enabled: false"
             renderer="antialias: true;
                    colorManagement: true;
                    sortObjects: true;
@@ -164,14 +162,11 @@
                     <img id="grassMetal" src="./public/media/image/textures/grass_1/wispy-grass-meadow_metallic.png" alt="">
                     <img id="qrCode" src="./public/media/image/rectangular/system/qr/oLabs.png" alt="">
 
-
+                    <a-asset-item id="evaFont" src="./public/fonts/vr/eva-vr.json"></a-asset-item>
 
 
                     <audio id="ambience1" src="./public/media/audio/ambience/outdoors/forest/night/1.mp3"></audio>
                 </a-assets>
-
-<a-entity geometry="primitive: cylinder; height: 0.03; segmentsHeight: 20; radius: 100; segmentsRadial: 60"
-    material="repeat: 60 60; src: [object HTMLImageElement]"></a-entity>
 
 <a-entity geometry="primitive: cylinder; height: 0.03; segmentsHeight: 20; radius: 100; segmentsRadial: 60"
     material="repeat: 60 60; src: #grassImg; alphaTest: 0.72; displacementMap: #grassHt; displacementTextureRepeat: 60 60; emissive: #092f0e; emissiveIntensity: 0.09; metalnessMap: #grassMetal; metalnessTextureRepeat: 60 60; normalMap: #grassNorm; normalTextureRepeat: 60 60; roughnessMap: #grassRough; roughnessTextureRepeat: 60 60; roughness: 0.85;"
@@ -201,6 +196,11 @@
 <a-image src="#qrCode" scale="2.5 2.5 2.5" position="3.4959 2.72684 -0.43375" rotation="10 -86.37 0" material=""
     geometry=""></a-image>
 
+
+    <a-entity text="value: What's up" position="0 4.3 -2"></a-entity>
+    <a-entity text="value: Dog?; font: #evaFont" position="0 4 -2"></a-entity>
+    <a-entity text="value: HELLO" material="color: red;" position="0 2 -2"></a-entity>
+
 <a-gltf-model src="#constructionSite1" position="-0.0606 1.142 -6.30017" scale="125 125 125" rotation="0 25.83 0"
     gltf-model="./public/media/3d-model/construction-site_1a.glb" shadow="cast: false"></a-gltf-model>
 
@@ -220,8 +220,11 @@
 <a-gltf-model src="#greenhouse1" position="26.06358 0.98 2.67866" scale="0.0001 0.0001 0.0001"
     rotation="0 12.000000000000002 0" gltf-model="./public/media/3d-model/greenhouse_1a.glb"
     shadow="cast: false"></a-gltf-model>
-<a-gltf-model src="#jet1a" position="10.32427 11.4639 4.34397" scale="5 5 5" rotation="15.149999999999999 172.07 -70"
-    gltf-model="./public/media/3d-model/jet_1a.glb" shadow="cast: false"></a-gltf-model>
+<a-gltf-model src="#jet1a" position="15.32427 11.4639 -30.34397" scale="5 5 5" rotation="15.149999999999999 192.07 -70"
+    gltf-model="./public/media/3d-model/jet_1a.glb" shadow="cast: false"
+    animation="property: position; to: 0 25 50; loop: false; dur: 15000;"
+    animation__2="property: rotation; to: 5 150 -25; loop: false; dur: 10000;"
+    ></a-gltf-model>
 
 
 
