@@ -1,0 +1,18 @@
+# Created from MeshLib
+# Material File
+ 
+ 
+newmtl 1
+Kd 0.929412 0.847059 0.725490
+newmtl 2
+Kd 0.960784 0.909804 0.835294
+newmtl 3
+Kd 1.000000 1.000000 1.000000
+newmtl Mat_0
+Kd 1.0 1.0 1.0
+map_Kd Mat_20035.png
+ 
+newmtl Mat_1
+Kd 1.0 1.0 1.0
+map_Kd Mat_20034.png
+ 
