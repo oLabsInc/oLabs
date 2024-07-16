@@ -752,3 +752,28 @@ body {
     list-style: none;
 }
 
+#allIconsSelected {
+    margin-top: 1.5rem;
+    margin-bottom: 5rem;
+    width: 90%;
+}
+
+.icon-row {
+    padding: 0.5rem;
+    text-align: left;
+    border-top: solid 1px #fff;
+    border-bottom: solid 1px #fff;
+    border-radius: 0.5rem;
+    backdrop-filter: blur(8px);
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.icon-row svg {
+    margin-right: 1rem;
+    scale: 1.5;
+}

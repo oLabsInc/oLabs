@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>oLabs</title>
+    <link rel="icon" type="image/png" href="./public/media/image/rectangular/system/logo/olabs_1a1a1a.png" />
+    <link rel="stylesheet" href="https://use.typekit.net/eny2fmh.css">
+    <link rel="stylesheet" href="./public/style/guide-book.css">
+    <script src="./public/logic/main.js" defer></script>
+    <script src="./public/logic/icons.js"></script>
+
+    <!-- ADD SCRIPT TAGS BELOW -->
+
+
+    <!-- END OF SCRIPT TAGS -->
+
+    <style>
+        .spread-icon-list {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-evenly;
+            gap: 1rem;
+            border: solid 3px aqua;
+            box-shadow: inset 0 0 12px #ffffff8e;
+            border-radius: 1rem;
+            width: 90%;
+            margin-inline: auto;
+            padding: 1rem;
+        }
+        .spread-icon-list svg {
+            border: solid 1px aqua;
+            padding: 0.15rem;
+            scale: 1.25;
+            border-radius: 0.25rem;
+            filter: drop-shadow(0 0 1px aqua);
+            /* stroke: #000; */
+            stroke: #fff;
+            backdrop-filter: blur(6px);
+        }
+        .spread-icon-list svg:hover {
+            stroke: aqua;
+            background-color: #00000065;
+        }
+    </style>
+</head>
+<body>
+    <div id="coreContainerBackground">
+        <img src="./public/media/image/rectangular/system/logo/olabs_1a1a1a.png" alt="oLabs Logo">
+    </div>
+    <div id="coreContainer">
+        <div class="site-header">
+            <h1 class="font-header-1">oLabs</h1>
+        </div>
+
+
+
+
+
+
+        <div class="page">
+            <div class="page-header">
+                <div class="page-title">
+                    <h1 class="future-font page-header-1">WideSpread Guide</h1>
+                </div>
+            </div>
+
+            <div class="page-body">
+        
+        
+                <div class="page-section">
+                    <div class="page-section-header">
+                        <h3 class="future-font page-header-2">Business</h3>
+                    </div>
+        
+                    <div class="page-section-body">
+                        <div class="page-section-body-header">
+                            <h3>Finding Businesses</h3>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ORIGINAL MAIN MENU -->
+    <div class="main-menu-container">
+        <ul id="menu">
+            <!-- open-menu id for click event -->
+            <a class="menu-button" id="openMenu" href="#menu" title="Show Navigation">
+                <span class="menu-item-icon open-menu">
+                    <img src="./public/media/image/rectangular/system/icons/menu.png" alt="Menu Icon">
+                </span>
+            </a>
+            <a class="menu-button" href="#" title="Hide Navigation">
+                <span class="menu-item-icon close-menu">
+                    <img src="./public/media/image/rectangular/system/icons/close.png" alt="Close Menu Icon">
+                </span>
+            </a>
+            <li class="menu-item">
+                <a href="./projects" data-menu="Projects">
+                    <span class="menu-item-icon">
+                        <img src="./public/media/image/rectangular/system/icons/projects-2.png" alt="Projects Icon">
+                    </span>
+                </a>
+            </li>
+
+            <li class="menu-item">
+                <a href="./index.html" data-menu="Home">
+                    <span class="menu-item-icon">
+                        <img src="./public/media/image/rectangular/system/icons/server-root.png"
+                            alt="Home Icon">
+                    </span>
+                </a>
+            </li>
+
+            <li class="menu-item">
+                <a href="./testing.html" data-menu="Testing">
+                    <span class="menu-item-icon">
+                        <img src="./public/media/image/rectangular/system/icons/testing.png" alt="Testing Icon">
+                    </span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="./database.html" data-menu="Database">
+                    <span class="menu-item-icon">
+                        <img src="./public/media/image/rectangular/system/icons/database.png" alt="Database Icon">
+                    </span>
+                </a>
+            </li>
+        </ul>
+    
+    </div>
+
+    <div id="pageMenu">
+    </div>
+
+    <script>
+        feather.replace();
+    </script>
+
+    <script>
+        const
+            dropDownHeaders = document.querySelectorAll('.drop-down-header')
+
+        dropDownHeaders.forEach(dropDown => {
+            dropDown.addEventListener('click', e => {
+                // dropDown.classList.add('drop-down-open')
+                const dropDownData = dropDown.nextSibling.nextSibling
+                
+                if (dropDown.classList.contains('drop-down-open')) {
+                    dropDown.classList.remove('drop-down-open')
+                    dropDownData.style.height = '0'
+
+                    
+                } else {
+                    dropDown.classList.add('drop-down-open')
+                    dropDownData.style.height = 'auto'
+                    const dropDownSubHeaders = dropDownData.querySelectorAll('.drop-down-sub-header')
+
+                    dropDownSubHeaders.forEach(dropDownSubHeader => {
+                        dropDownSubHeader.addEventListener('click', e => {
+                            const dropDownSubData = dropDownSubHeader.nextSibling.nextSibling
+                            console.log(dropDownSubHeader)
+                            console.log(dropDownSubData)
+
+                            if (dropDownSubHeader.classList.contains('drop-down-sub-open')) {
+                                dropDownSubHeader.classList.remove('drop-down-sub-open')
+                                dropDownSubData.style.height = '0px'
+                            } else {
+                                dropDownSubHeader.classList.add('drop-down-sub-open')
+                                dropDownSubData.style.height = 'auto'
+
+                            }
+                        })
+                    })
+                }
+
+
+
+            })
+        })
+    </script>
+
+</body>
+</html>

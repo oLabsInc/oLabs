@@ -60,7 +60,10 @@
         <div class="spread-icon">
             <i data-feather="camera"></i>
         </div>
-         -->
+        -->
+
+
+
         <div class="spread-icon-list">
             <i data-feather="activity"></i>
             <i data-feather="alert-circle"></i>
@@ -263,8 +266,11 @@
             <i data-feather="zoom-out"></i>
 
         </div>
-
-
+        <div>
+            <input id="selectedColorEl" type="color" name="icon_color">
+        </div>
+        <ul id="allIconsSelected"></ul>
+        <div id="currentIconSelected"></div>
 
         <div class="page">
             <div class="page-header">
@@ -294,7 +300,7 @@
                                     </ol>
                                 <li class="drop-down-sub-header">Business</li>
                                     <ol class="table-of-contents-topic drop-down-sub-data">
-                                        <li>Finding Businesses</li>
+                                        <li><a href="./business-finding-business.html">Finding Businesses</a></li>
                                         <li>Business Management</li>
                                         <li>Online Store</li>
                                         <li>Inventory</li>
@@ -445,6 +451,81 @@
 
             })
         })
+    </script>
+
+
+    <script>
+        const
+            spreadIconListItems = document.querySelectorAll('.spread-icon-list svg'),
+            currentIconSelected = document.getElementById('currentIconSelected'),
+            allIconsSelected = document.getElementById('allIconsSelected'),
+            iconRows = document.querySelectorAll('.icon-row')
+            
+
+        spreadIconListItems.forEach(item => {
+            const itemName = item.classList[1]
+            let chosenIcons = []
+
+
+            // item.addEventListener('click', e => {
+            //     currentIconSelected.innerText = item.classList[1]
+
+            // })
+            
+            item.addEventListener('click', e => {
+                // console.log(item)
+                e.preventDefault()
+                const itemName = item.classList[1]
+
+                chosenIcons.push(itemName)
+
+
+                let itemClone = item.cloneNode(true)
+
+                const selectedColorEl = document.getElementById('selectedColorEl')
+                const selectedColor = selectedColorEl.value
+
+                const
+                    newIconRow = document.createElement('li'),
+                    newIconRowIcon = document.createElement('i'),
+                    newIconRowTitle = document.createElement('span'),
+                    selectedIconColor = document.createElement('span')
+
+                newIconRow.classList.add('icon-row')
+                // newIconRowIcon.setAttribute('data-feather', item.classList[1])
+                // newIconRowIcon.itemClone
+
+                newIconRowTitle.innerText = item.classList[1]
+                selectedIconColor.innerText = selectedColor
+                newIconRow.appendChild(itemClone)
+                newIconRow.appendChild(selectedIconColor)
+                newIconRow.appendChild(newIconRowTitle)
+                allIconsSelected.appendChild(newIconRow)
+                const newIconRowSvg = newIconRow.querySelector('svg')
+                newIconRowSvg.setAttribute('stroke', selectedColor || '#fff')
+                // console.log(chosenIcons)
+
+                allIconsSelected.querySelectorAll('li').forEach(row => {
+                    //  window.getComputedStyle(row);
+                    console.log(row)
+                    row.addEventListener('click', e => {
+                        console.log('row:')
+                        console.log(row)
+                        row.remove()
+
+                        // console.log(window.getComputedStyle(row))
+                    })
+                })
+                console.table(chosenIcons)
+
+            })
+
+
+
+            item.setAttribute('tooltip', item.classList[1])
+            // console.log(itemName)
+        })
+        
     </script>
 
 </body>
