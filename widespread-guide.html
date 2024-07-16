@@ -267,7 +267,15 @@
 
         </div>
         <div>
-            <input id="selectedColorEl" type="color" name="icon_color">
+            <div class="color-input">
+                <label for="icon_color">Choose Next Icon Color</label>
+                <input id="selectedColorEl" type="color" name="icon_color">
+            </div>
+            <div class="color-input">
+                <label for="all_icon_colors">Change All Icon Colors</label>
+                <input id="switchAllIconColors" type="color" name="all_icon_colors">
+            </div>
+
         </div>
         <ul id="allIconsSelected"></ul>
         <div id="currentIconSelected"></div>
@@ -406,11 +414,43 @@
     <div id="pageMenu">
     </div>
 
+
+
+        <div id="fullscreenToggle">
+            <img id="fullscreenBtn" src="./public/media/image/system/view-expand.png" alt="Fullscreen Icon">
+            <img id="exitFullscreenBtn" class="hidden" src="./public/media/image/system/view-collapse.png"
+                alt="Exit Fullscreen Icon">
+        </div>
+
+
     <script>
         feather.replace();
     </script>
 
+
     <script>
+        const
+            fullscreenToggle = document.getElementById('fullscreenToggle'),
+            fullscreenBtn = document.getElementById('fullscreenBtn'),
+            exitFullscreenBtn = document.getElementById('exitFullscreenBtn')
+
+        fullscreenBtn.addEventListener('click', e => {
+            document.documentElement.requestFullscreen().catch((e) => {
+                console.log(e)
+            })
+            fullscreenBtn.classList.toggle('hidden')
+            exitFullscreenBtn.classList.toggle('hidden')
+        })
+        exitFullscreenBtn.addEventListener('click', e => {
+            document.exitFullscreen()
+            fullscreenBtn.classList.toggle('hidden')
+            exitFullscreenBtn.classList.toggle('hidden')
+        })
+    </script>
+
+
+    <script>
+        
         const
             dropDownHeaders = document.querySelectorAll('.drop-down-header')
 
@@ -515,6 +555,10 @@
 
                         // console.log(window.getComputedStyle(row))
                     })
+                    switchAllIconColors.addEventListener('change', e => {
+                        const newColor = switchAllIconColors.value
+                        row.querySelector('svg').setAttribute('stroke', newColor)
+                    })
                 })
                 console.table(chosenIcons)
 
@@ -526,6 +570,9 @@
             // console.log(itemName)
         })
         
+
+        const switchAllIconColors = document.getElementById('switchAllIconColors')
+
     </script>
 
 </body>
