@@ -24,7 +24,7 @@
 <body>
 
     <div id="vrScene">
-        <a-scene avatar-recorder fog="type: exponential; color: #222; density: 0.001" vr-mode="enabled: true;" loading-screen="dotsColor: aqua; backgroundColor: black" reflection="directionalLight:a-light#dirlight;">
+        <a-scene avatar-recorder fog="type: exponential; color: #222; density: 0.001" vr-mode="enabled: true;" loading-screen="dotsColor: rgba(7, 212, 255, 1); backgroundColor: black" reflection="directionalLight:a-light#dirlight;">
             <a-assets>
                 <a-asset-item id="vrSpreadCity" src="./public/media/3d-model/city.glb"></a-asset-item>
                 <a-asset-item id="cityBlock1" src="./public/media/3d-model/city-block_1a.glb"></a-asset-item>
@@ -64,7 +64,7 @@
                 <a-animation begin="fusing" easing="ease-in" attribute="scale" fill="backwards" from="1 1 1"
                     to="0.2 0.2 0.2" dur="1500"></a-animation>
             </a-entity>
-            <!-- <a-box look-at="[camera]" position="0 0.25 -3" color="aqua" scale="2 1 1" material="opacity: 0.175;"></a-box> -->
+            <!-- <a-box look-at="[camera]" position="0 0.25 -3" color="rgba(7, 212, 255, 1)" scale="2 1 1" material="opacity: 0.175;"></a-box> -->
         </a-entity>
     </a-entity>
 
@@ -173,7 +173,7 @@
 
 
 <a-entity position="0 -0.5 -0.5" rotation="-70 0 0">
-    <a-torus color="aqua" arc="360" radius="0.2" radius-tubular="0.1" rotation="90 0 0" material="color: #000000"
+    <a-torus color="rgba(7, 212, 255, 1)" arc="360" radius="0.2" radius-tubular="0.1" rotation="90 0 0" material="color: #000000"
         geometry="arc: 360; radius: 1.64; radiusTubular: 0.02; segmentsRadial: 37; segmentsTubular: 33"
         scale="0.15 0.15 1" visible="" position="0.00003 0 -0.00168"></a-torus>
     <!-- <a-gltf-model src="#vrSpreadMenu" position="0 0 0" scale="0.6 0.6 0.6"></a-gltf-model> -->
