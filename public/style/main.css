@@ -114,7 +114,9 @@ body {
     background-color: #000;
 }
 
-
+.hidden {
+    display: none;
+}
 #backgroundImage {
     background-image: url('../media/image/rectangular/system/backgrounds/8.jpg');
     background-repeat: no-repeat;
@@ -753,7 +755,7 @@ body {
 
 #fullscreenToggle {
     position: fixed;
-    bottom: 1rem;
+    top: 1rem;
     left: 1rem;
     width: 40px;
     height: 40px;
@@ -924,9 +926,9 @@ ol.organizational-chart>li>div:before {
 }
 
 ol.organizational-chart>li>div:first-of-type:after {
-    bottom: 0;
-    height: 2em;
-    right: -1em;
+    bottom: -4px;
+    height: calc(2.15em + 5px);
+    right: -1.05em;
     width: 3px;
 }
 
@@ -935,8 +937,8 @@ ol.organizational-chart>li>div+div {
 }
 
 ol.organizational-chart>li>div+div:after {
-    height: calc(100% + 1em);
-    right: -1em;
+    height: calc(100% + 1.05em);
+    right: -1.05em;
     top: -1em;
     width: 3px;
 }
