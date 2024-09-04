@@ -13,6 +13,54 @@
 
     <!-- END OF SCRIPT TAGS -->
 
+    <style>
+        .watch{
+            --watch-color: white;
+            --screen-color: black;  
+            font-size: 1.25rem;
+            font-family: monospace;
+            color: #fff;
+            padding: 2em 1.5em;
+            border: 2px solid var(--watch-color);
+            border-radius: 2em;
+            box-shadow:
+                inset 0 0 0 .5em black,
+                inset 0 0 1rem 1em hsl(0 0% 100% / .25);
+            background-color: var(--screen-color);
+            background-image: linear-gradient(to bottom right, #fff0 50%, hsl(0 0% 100% / .25));
+            position: relative;
+            text-align: left;
+            line-height: 1.5rem;
+            max-width: 100vw;
+            min-width: 90%;
+            aspect-ratio: 1 / 1;
+            }
+            .watch::before, .watch::after{
+            content: "";
+            position: relative;
+            background-color: var(--watch-color);
+            z-index: 50;
+            }
+            .watch::after{
+            inset: -.5em 20%;
+            border-radius: .5em;
+            background-image: 
+                linear-gradient(#fff0, hsl(0 0% 0% / .5) .5em calc(100% - .5em), #fff0);
+            }
+            .watch::before{
+            inset: -50vh 25%;
+            background-image: 
+                repeating-linear-gradient(#fff0 0 .3em, hsl(0 0% 0% / .125) .3em .5em, #fff0 .5em .8em),
+                radial-gradient(circle, #fff0, hsl(0 0% 0% / .25) 50%);
+            }
+            .keyword  { color: #ddca7e; }
+            .def      { color: #809bbd; }
+            .operator { color: #cccccc; }
+            .property { color: #9a8297; }
+            .string   { color: #96b38a; }
+            .number   { color: #d0782a; }
+
+    </style>
 </head>
 <body>
     <div id="coreContainerBackground">
@@ -69,6 +117,8 @@
                 </div>
             </div>
         </div>
+
+        <div class="watch"></div>
     </div>
 
     <!-- ORIGINAL MAIN MENU -->
@@ -122,5 +172,36 @@
     <div id="pageMenu">
     </div>
 
+<script>
+    clock();
+
+        function clock() {
+            const date = new Date();
+            const indent = 2;
+            const clockObj = {
+                am_pm: date.getHours() >= 12 ? 'pm' : 'am',
+                hours: date.getHours() % 12 || 12,
+                minutes: date.getMinutes(),
+                seconds: date.getSeconds(),
+                day: date.toLocaleDateString('en-us', { weekday: 'long' }),
+                date: date.getDate(),
+                month: date.toLocaleDateString('en-us', { month: 'long' }),
+                year: date.getFullYear(),
+            }
+            const entryFormat = ([key, val]) => {
+                return `${'&nbsp'.repeat(indent)}<span class="property">${key}</span>: ${valFormat(val)}`
+            }
+            const valFormat = (val) => {
+                if (typeof val == 'number') return `<span class="number">${val}</span>`
+                else if (typeof val == 'string') return `<span class="string">"${val}"</span>`
+            }
+            document.querySelector(".watch").innerHTML = `
+    <span class="keyword">const</span> <span class="def">clock</span> = {<br>
+    ${Object.entries(clockObj).reduce((str, entry) => str + entryFormat(entry) + ',<br>', '')}};`
+
+            requestAnimationFrame(clock);
+        }
+
+</script>
 </body>
 </html>
