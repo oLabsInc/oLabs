@@ -15,25 +15,28 @@
 
     <style>
         .watch{
-            --watch-color: white;
-            --screen-color: black;  
+            --watch-color: rgba(7, 255, 255, 1);
+            --screen-color: rgba(0, 0, 0, 0.438);  
+            backdrop-filter: blur(2px);
             font-size: 1.25rem;
             font-family: monospace;
             color: #fff;
             padding: 2em 1.5em;
             border: 2px solid var(--watch-color);
-            border-radius: 2em;
+            border-radius: 2rem;
             box-shadow:
-                inset 0 0 0 .5em black,
-                inset 0 0 1rem 1em hsl(0 0% 100% / .25);
+                inset 0 0 0 .25em #000, inset 0 0 4px rgba(7, 255, 255, 1),
+                inset 0 0 1rem 0.25em hsla(182, 98%, 50%, 0.175), 0 0 4px rgba(7, 255, 255, 1), 0 0 12px rgba(7, 255, 255, 0.5), inset 0 0 4px rgba(7, 255, 255, 1);
             background-color: var(--screen-color);
-            background-image: linear-gradient(to bottom right, #fff0 50%, hsl(0 0% 100% / .25));
+            background-image: linear-gradient(to bottom right, transparent, transparent, hsla(183, 84%, 47%, 0.125), #0c14145c 30%, hsla(183, 72%, 36%, 0.15), transparent);
             position: relative;
             text-align: left;
             line-height: 1.5rem;
-            max-width: 100vw;
-            min-width: 90%;
+            max-width: 95vw;
+            min-width: fit-content;
+            cursor:progress;
             aspect-ratio: 1 / 1;
+            margin-bottom: 15rem;
             }
             .watch::before, .watch::after{
             content: "";
@@ -53,16 +56,33 @@
                 repeating-linear-gradient(#fff0 0 .3em, hsl(0 0% 0% / .125) .3em .5em, #fff0 .5em .8em),
                 radial-gradient(circle, #fff0, hsl(0 0% 0% / .25) 50%);
             }
-            .keyword  { color: #ddca7e; }
+            /* .keyword  { color: #ddca7e; }
             .def      { color: #809bbd; }
             .operator { color: #cccccc; }
             .property { color: #9a8297; }
             .string   { color: #96b38a; }
-            .number   { color: #d0782a; }
+            .number   { color: #d0782a; } */
+            .keyword  { color: #ffda44cc; font-weight: bolder; }
+            .def      { color: #2d85f081; }
+            .operator { color: #cccccccc; font-weight: lighter; }
+            .property { color: #9a8297cc; }
+            .string   { color: #70f139cc; font-weight: bolder; }
+            .number   { color: #f57f18cc; font-weight: bolder; }
+
+            .keyword, .def, .operator, .property, .string, .number {
+                /* text-shadow: 0 0 2px red; */
+                text-shadow: 0 0 3px #08e6eecb;
+            }
 
     </style>
 </head>
 <body>
+
+    <div id="fullscreenToggle">
+        <img id="fullscreenBtn" src="./public/media/image/system/view-expand.png" alt="Fullscreen Icon">
+        <img id="exitFullscreenBtn" class="hidden" src="./public/media/image/system/view-collapse.png" alt="Exit Fullscreen Icon">
+    </div>
+
     <div id="coreContainerBackground">
         <img src="./public/media/image/rectangular/system/logo/olabs_1a1a1a.png" alt="oLabs Logo">
     </div>
@@ -202,6 +222,25 @@
             requestAnimationFrame(clock);
         }
 
+</script>
+<script>
+    const
+        fullscreenToggle = document.getElementById('fullscreenToggle'),
+        fullscreenBtn = document.getElementById('fullscreenBtn'),
+        exitFullscreenBtn = document.getElementById('exitFullscreenBtn')
+
+    fullscreenBtn.addEventListener('click', e => {
+        document.documentElement.requestFullscreen().catch((e) => {
+            console.log(e)
+        })
+        fullscreenBtn.classList.toggle('hidden')
+        exitFullscreenBtn.classList.toggle('hidden')
+    })
+    exitFullscreenBtn.addEventListener('click', e => {
+        document.exitFullscreen()
+        fullscreenBtn.classList.toggle('hidden')
+        exitFullscreenBtn.classList.toggle('hidden')
+    })
 </script>
 </body>
 </html>

@@ -870,6 +870,7 @@ body {
     align-items: center;
     justify-content: center;
     z-index: 99999;
+    opacity: 0.1;
 }
 
 #fullscreenToggle img {
@@ -878,6 +879,7 @@ body {
     width: 30px;
     height: 30px;
     filter: drop-shadow(0 0 2px #000) grayscale(100%);
+    opacity: 0.25;
 }
 
 
