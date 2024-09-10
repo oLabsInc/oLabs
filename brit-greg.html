@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>oLabs Main Office</title>
+
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+
+    
+    <link rel="stylesheet" href="./public/style/vr.css">
+    <script src="./public/logic/vr-main-menu.js"></script>
+
+    <style>
+        .a-loader-title {
+            color: rgb(177, 25, 177);
+        }
+        
+#fullscreenToggle {
+    position: fixed;
+    bottom: 1rem;
+    left: 1rem;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.205);
+    box-shadow: 0 0 8px 1px rgba(135, 206, 250, 0.25), 0 10px 6px #0000007a;
+    border-radius: 0.5rem;
+    backdrop-filter: blur(4px);
+    /* border: solid 1px #4767ac; */
+    border: solid 1px rgba(135, 206, 250, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+}
+#fullscreenToggle img {
+    max-width: 100%;
+    max-height: 100%;
+    width: 30px;
+    height: 30px;
+    filter: drop-shadow(0 0 2px #000) grayscale(0%);
+}
+
+.hidden {
+    display: none;
+}
+    </style>
+    </head>
+<body>
+    <div id="fullscreenToggle">
+        <img id="fullscreenBtn" src="./public/media/image/rectangular/system/icons/blue-grey/fullscreen.png" alt="Fullscreen Icon">
+        <img id="exitFullscreenBtn" class="hidden" src="./public/media/image/rectangular/system/icons/blue-grey/fullscreen-exit.png"
+            alt="Exit Fullscreen Icon">
+    </div>
+
+
+        <div id="vrScene">
+            <a-scene avatar-recorder fog="type: exponential; color: #222; density: 0.001" vr-mode="enabled: true;"
+                loading-screen="dotsColor: rgba(7, 212, 255, 1); backgroundColor: black" reflection="directionalLight:a-light#dirlight;">
+                <a-assets>
+                    <a-asset-item id="portal" src="./public/media/3d-model/scifi_terminal.glb"></a-asset-item>
+                    <a-asset-item id="building9" src="./public/media/3d-model/assets/buildings/sci-fi_building_9.glb"></a-asset-item>
+                    <a-asset-item id="gallery1" src="./public/media/3d-model/assets/gallery/3.glb"></a-asset-item>
+                    <img id="oLabsMainOffice" src="./public/media/image/360/oLabs Main Office.png" alt="">
+
+
+                    <img id="play" src="./public/media/image/rectangular/system/icons/play.png" alt="">
+                    <img id="pause" src="./public/media/image/rectangular/system/icons/pause.png" alt="">
+                    <video id="vrVid1" src="./public/media/video/360/brit+greg_wedding_1a1a1a.mp4" loop="true"></video>
+                    <video id="vrVid2" src="./public/media/video/360/brit+greg_wedding_1a1a1b.mp4" loop="true"></video>
+
+                </a-assets>
+
+                <a-camera>
+                    <a-cursor></a-cursor>
+                </a-camera>
+
+                <a-image id="videoControls" play-pause src="#play" position="0 1.6 -4" material="opacity: 0.25;"></a-image>
+
+                <a-videosphere src="#vrVid1"></a-videosphere>
+
+            </a-scene>
+
+        </div>
+
+
+
+    <script>
+        AFRAME.registerComponent('play-pause', {
+                init: function () {
+                    var myVideo = document.querySelector('#vrVid1')
+                    var videoControls = document.querySelector('#videoControls')
+                    this.el.addEventListener('click', function () {
+                        if (myVideo.paused) {
+                            myVideo.play()
+                            videoControls.setAttribute('src', '#pause')
+                        } else {
+                            myVideo.pause()
+                            videoControls.setAttribute('src', '#play')
+                        }
+                    })
+                }
+            })
+    </script>
+
+        <script>
+            const
+                fullscreenToggle = document.getElementById('fullscreenToggle'),
+                fullscreenBtn = document.getElementById('fullscreenBtn'),
+                exitFullscreenBtn = document.getElementById('exitFullscreenBtn')
+
+            fullscreenBtn.addEventListener('click', e => {
+                document.documentElement.requestFullscreen().catch((e) => {
+                    console.log(e)
+                })
+                fullscreenBtn.classList.toggle('hidden')
+                exitFullscreenBtn.classList.toggle('hidden')
+            })
+            exitFullscreenBtn.addEventListener('click', e => {
+                document.exitFullscreen()
+                fullscreenBtn.classList.toggle('hidden')
+                exitFullscreenBtn.classList.toggle('hidden')
+            })
+        </script>
+</body>
+</html>
