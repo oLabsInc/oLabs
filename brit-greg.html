@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>oLabs Main Office</title>
 
-    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <!-- <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script> -->
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
 
     
     <link rel="stylesheet" href="./public/style/vr.css">
@@ -53,21 +54,16 @@
             alt="Exit Fullscreen Icon">
     </div>
 
+    
 
         <div id="vrScene">
             <a-scene avatar-recorder fog="type: exponential; color: #222; density: 0.001" vr-mode="enabled: true;"
                 loading-screen="dotsColor: rgba(7, 212, 255, 1); backgroundColor: black" reflection="directionalLight:a-light#dirlight;">
                 <a-assets>
-                    <a-asset-item id="portal" src="./public/media/3d-model/scifi_terminal.glb"></a-asset-item>
-                    <a-asset-item id="building9" src="./public/media/3d-model/assets/buildings/sci-fi_building_9.glb"></a-asset-item>
-                    <a-asset-item id="gallery1" src="./public/media/3d-model/assets/gallery/3.glb"></a-asset-item>
-                    <img id="oLabsMainOffice" src="./public/media/image/360/oLabs Main Office.png" alt="">
-
-
                     <img id="play" src="./public/media/image/rectangular/system/icons/play.png" alt="">
                     <img id="pause" src="./public/media/image/rectangular/system/icons/pause.png" alt="">
                     <video id="vrVid1" src="./public/media/video/360/brit+greg_wedding_1a1a1a.mp4" loop="true"></video>
-                    <video id="vrVid2" src="./public/media/video/360/brit+greg_wedding_1a1a1b.mp4" loop="true"></video>
+                    <!-- <video id="vrVid2" src="./public/media/video/360/brit+greg_wedding_1a1a1b.mp4" loop="true"></video> -->
 
                 </a-assets>
 
@@ -75,7 +71,11 @@
                     <a-cursor></a-cursor>
                 </a-camera>
 
-                <a-image id="videoControls" play-pause src="#play" position="0 1.6 -4" material="opacity: 0.25;"></a-image>
+                <a-light position="0 1.6 0" light="type: ambient; color: #fff; intensity: 0.1;"></a-light>
+
+                <a-sphere id="outerSphere" position="0 1.6 0" radius="5" material="color: #111; side: double; opacity: 0.75; roughness: 0; metalness: 1;"></a-sphere>
+                <a-sphere id="innerSphere" position="0 1.6 0" radius="4.9" material="color: #FFF; side: double; opacity: 0.05; roughness: 1;"></a-sphere>
+                <a-image id="videoControls" play-pause src="#play" scale="0.5 0.5 1" position="0 -0.5 -3" rotation="-45 0 0" material="opacity: 0.75; alphaTest: 0.5;"></a-image>
 
                 <a-videosphere src="#vrVid1"></a-videosphere>
 
@@ -90,13 +90,20 @@
                 init: function () {
                     var myVideo = document.querySelector('#vrVid1')
                     var videoControls = document.querySelector('#videoControls')
+                    const
+                        outerSphere = document.querySelector('#outerSphere'),
+                        innerSphere = document.querySelector('#innerSphere')
+
+
                     this.el.addEventListener('click', function () {
                         if (myVideo.paused) {
                             myVideo.play()
                             videoControls.setAttribute('src', '#pause')
+                            outerSphere.setAttribute('material', 'opacity', '0')
                         } else {
                             myVideo.pause()
                             videoControls.setAttribute('src', '#play')
+                            outerSphere.setAttribute('material', 'opacity', '0.75')
                         }
                     })
                 }
