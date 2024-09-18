@@ -9,13 +9,14 @@
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
 
     <script src="https://unpkg.com/aframe-layout-component@5.3.0/dist/aframe-layout-component.min.js"></script>
-    <script
+    <!-- <script
         src="https://unpkg.com/aframe-environment-component@1.3.2/dist/aframe-environment-component.min.js"></script>
     <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script> -->
     <script src="https://rawgit.com/mayognaise/aframe-mouse-cursor-component/master/dist/aframe-mouse-cursor-component.min.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/nipplejs/0.10.2/nipplejs.js" integrity="sha512-WkQoRWCoNX6HLaYdCCKUS3QfVk6Yk3U7gTgX22yil7QY91pFsBFzTVjhdbXoOLayLHeTre5sZNchk/5SO7FNdg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
     <link rel="stylesheet" href="./public/style/vr.css">
@@ -89,9 +90,184 @@
 
         
     </style>
+
+
+    <style>
+        body {
+  margin: 0;
+  padding: 0;
+  margin-top: 20px;
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#buttons {
+  position: relative;
+  border: solid 1px #aaa;
+  display: inline-block;
+  width: 100%;
+  border-radius: 10px;
+  height: 50px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+.button {
+  display: inline-block;
+  background: #ccc;
+  color: black;
+  height: 50px;
+  width: 33%;
+  margin: 0;
+  margin-right: -3px;
+  text-align: center;
+  line-height: 45px;
+  font-size: 25px;
+  cursor: pointer;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.button:hover {
+  background: #eee;
+}
+
+.button:active {
+  background: #ddd;
+}
+
+.button.active {
+  color: white;
+  background: #888;
+}
+
+.button:nth-child(2) {
+  width: 34%;
+  border-left: solid 1px #aaa;
+  border-right: solid 1px #aaa;
+}
+
+.highlight {
+  display: none;
+}
+
+.highlight.active {
+  display: block;
+}
+
+.zone {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+}
+
+.zone.active {
+  display: block;
+}
+
+
+
+.zone.dynamic {
+  background: rgba(128, 0, 128, 0.233);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100vw;
+  max-height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
+  z-index: 50000;
+}
+
+.zone.semi {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.zone.static {
+  background: rgba(255, 0, 0, 0.1);
+}
+
+#debug {
+    background-color: rgba(0, 255, 0, 0.527);
+    z-index: 50001;
+    position: relative;
+    pointer-events: none;
+}
+    </style>
 </head>
 
 <body>
+    <div class="dynamic active highlight highlight-javascript">
+
+    </div>
+    <div class="semi highlight highlight-javascript">
+
+    </div>
+    <div class="static highlight highlight-javascript">
+
+    </div>
+
+    <div id="buttons">
+        <div data-type="dynamic" class="active button dynamic">dynamic</div>
+        <div data-type="semi" class="button semi">semi</div>
+        <div data-type="static" class="button static">static</div>
+    </div>
+    <div id="zone_joystick">
+        <div id="debug">
+            <ul>
+                <li class="position">
+                    position :
+                    <ul>
+                        <li class="x">x : <span class='data'></span></li>
+                        <li class="y">y : <span class='data'></span></li>
+                    </ul>
+                </li>
+                <li class="force">force : <span class='data'></span></li>
+                <li class="pressure">pressure : <span class='data'></span></li>
+                <li class="distance">distance : <span class='data'></span></li>
+                <li class="angle">
+                    angle :
+                    <ul>
+                        <li class="radian">radian : <span class='data'></span></li>
+                        <li class="degree">degree : <span class='data'></span></li>
+                    </ul>
+                </li>
+                <li class="direction">
+                    direction :
+                    <ul>
+                        <li class="x">x : <span class='data'></span></li>
+                        <li class="y">y : <span class='data'></span></li>
+                        <li class="angle">angle : <span class='data'></span></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="dump"></div>
+        </div>
+        <div class="zone dynamic active">
+            <h1>dynamic</h1>
+        </div>
+        <div class="zone semi">
+            <h1>semi</h1>
+        </div>
+        <div class="zone static">
+            <h1>static</h1>
+        </div>
+    </div>
+    <br />
+    <div>
+
     <div id="vrGui">
         <div id="vrOverlay">
             <div class="vr-overlay">
@@ -166,7 +342,7 @@
         <!-- Ambience Background Sound -->
         <a-sound src="src: #ambience1" autoplay="true" position="0 0 0" preload="auto"></a-sound>
 
-        <a-entity id="userRig" position="0 2.2 3">
+        <a-entity id="userRig" position="0 2.2 3" user-location >
             <a-entity camera look-controls wasd-controls listener mouse-cursor>
                 <a-entity position="0 0 -3" geometry="primitive: ring; radiusInner: 0.04; radiusOuter: 0.05;"
                     material="color: orangered; opacity: 0.5; shader: flat" cursor="maxDistance: 30; fuse: true">
@@ -257,8 +433,8 @@
 
         <!-- AMBIENT -->
 
-        <a-entity light="color: #424242; type: ambient; intensity: 1; castShadow: true; decay: 0.09" data-aframe-default-light=""
-            aframe-injected="" visible="" position="0.761 30 0" rotation="-90 0 0"></a-entity>
+        <!-- <a-entity light="color: #424242; type: ambient; intensity: 1; castShadow: true; decay: 0.09" data-aframe-default-light=""
+            aframe-injected="" visible="" position="0.761 30 0" rotation="-90 0 0"></a-entity> -->
 
 
         <a-sky color="#010101"></a-sky>
@@ -341,5 +517,183 @@
         })
     </script>
 
+
+<script>
+    var s = function (sel) {
+        return document.querySelector(sel);
+    };
+    var sId = function (sel) {
+        return document.getElementById(sel);
+    };
+    var removeClass = function (el, clss) {
+        el.className = el.className.replace(new RegExp('\\b' + clss + ' ?\\b', 'g'), '');
+    }
+    var joysticks = {
+        dynamic: {
+            zone: s('.zone.dynamic'),
+            color: 'blue',
+            multitouch: true
+        },
+        semi: {
+            zone: s('.zone.semi'),
+            mode: 'semi',
+            catchDistance: 150,
+            color: 'white'
+        },
+        static: {
+            zone: s('.zone.static'),
+            mode: 'static',
+            position: {
+                left: '50%',
+                top: '50%'
+            },
+            color: 'red'
+        }
+    };
+    var joystick;
+
+    // Get debug elements and map them
+    var elDebug = sId('debug');
+    var elDump = elDebug.querySelector('.dump');
+    var els = {
+        position: {
+            x: elDebug.querySelector('.position .x .data'),
+            y: elDebug.querySelector('.position .y .data')
+        },
+        force: elDebug.querySelector('.force .data'),
+        pressure: elDebug.querySelector('.pressure .data'),
+        distance: elDebug.querySelector('.distance .data'),
+        angle: {
+            radian: elDebug.querySelector('.angle .radian .data'),
+            degree: elDebug.querySelector('.angle .degree .data')
+        },
+        direction: {
+            x: elDebug.querySelector('.direction .x .data'),
+            y: elDebug.querySelector('.direction .y .data'),
+            angle: elDebug.querySelector('.direction .angle .data')
+        }
+    };
+
+
+    var timeoutCreate;
+    function createThrottle(evt) {
+        clearTimeout(timeoutCreate);
+        timeoutCreate = setTimeout(() => {
+            createNipple(evt);
+        }, 100);
+    }
+
+    sId('buttons').onclick = sId('buttons').ontouchend = createThrottle;
+
+    createNipple('dynamic');
+
+    function bindNipple() {
+        joystick.on('start end', function (evt, data) {
+            dump(evt.type);
+            debug(data);
+        }).on('move', function (evt, data) {
+            debug(data);
+            console.log(data)
+            moveAngle(data.angle.degree)
+        }).on('dir:up plain:up dir:left plain:left dir:down ' +
+            'plain:down dir:right plain:right',
+            function (evt, data) {
+                dump(evt.type);
+            }
+        ).on('pressure', function (evt, data) {
+            debug({
+                pressure: data
+            });
+            console.log(data)
+        });
+    }
+
+    function createNipple(evt) {
+        var type = typeof evt === 'string' ?
+            evt : evt.target.getAttribute('data-type');
+        if (joystick) {
+            joystick.destroy();
+        }
+        removeClass(s('.zone.active'), 'active');
+        removeClass(s('.button.active'), 'active');
+        removeClass(s('.highlight.active'), 'active');
+        s('.highlight.' + type).className += ' active';
+        s('.button.' + type).className += ' active';
+        s('.zone.' + type).className += ' active';
+        joystick = nipplejs.create(joysticks[type]);
+        console.log(joystick, nipplejs);
+        bindNipple();
+    }
+
+    // Print data into elements
+    function debug(obj) {
+        function parseObj(sub, el) {
+            for (var i in sub) {
+                if (typeof sub[i] === 'object' && el) {
+                    parseObj(sub[i], el[i]);
+                } else if (el && el[i]) {
+                    el[i].innerHTML = sub[i];
+                }
+            }
+        }
+        setTimeout(function () {
+            parseObj(obj, els);
+        }, 0);
+    }
+
+    var nbEvents = 0;
+
+    // Dump data
+    function dump(evt) {
+        setTimeout(function () {
+            if (elDump.children.length > 4) {
+                elDump.removeChild(elDump.firstChild);
+            }
+            var newEvent = document.createElement('div');
+            newEvent.innerHTML = '#' + nbEvents + ' : <span class="data">' +
+                evt + '</span>';
+            elDump.appendChild(newEvent);
+            nbEvents += 1;
+        }, 0);
+    }
+
+    // nipplejs.create({
+    //     zone: document.getElementById('semi'),
+    //     mode: 'semi',
+    //     catchDistance: 150,
+    //     color: 'white'
+    // });
+
+</script>
+
+
+
+<script>
+    AFRAME.registerComponent('user-location', {
+            init: function () {
+                const userRig = document.getElementById('userRig')
+                let userLocation = this.el.object3D.position
+            },
+
+            tick: function () {
+                // Don't call query selector in here, query beforehand.
+                console.log('tick')
+                userLocation = this.el.object3D.position
+                console.log(userLocation)
+            },
+            tock: function () {
+                console.log('tock')
+                console.log(userRig.getAttribute('position'))
+
+            }
+        });
+
+
+    function moveAngle(deg) {
+        console.log(deg)
+    }
+
+
+</script>
 </body>
 </html>
