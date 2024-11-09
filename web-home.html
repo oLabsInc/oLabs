@@ -14,7 +14,40 @@
     <!-- END OF SCRIPT TAGS -->
 
     <style>
+        
+
+        body {
+            cursor: url('./public/cursors/default.cur'), auto;
+        }
+        
+        input, textarea {
+            cursor: url('./public/cursors/BGText.cur'), auto;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            background-color: #00000036;
+            outline: inset 1px #ffffff88;
+            border: solid 1px lightskyblue;
+            color: #fff;
+            box-shadow: inset 0 0 6px rgba(135, 206, 250, 0.719);
+        }
+        input::placeholder, textarea::placeholder {
+            color: lightskyblue;
+        }
+        .page-actions {
+            background-color: #00000028;
+            border: solid 1px lightskyblue;
+            backdrop-filter: blur(2px);
+            box-shadow: inset 0 0 6px lightskyblue, 0 0 6px lightskyblue, 0 50px 48px #0000009d;
+            width: 1100px;
+            max-width: 90vw;
+            padding: 1rem;
+            margin-top: 5rem;
+            padding-bottom: 2rem;
+            border-radius: 0.75rem;
+        }
         .watch{
+            display: none;
             --watch-color: rgba(7, 255, 255, 1);
             --screen-color: rgba(0, 0, 0, 0.438);  
             backdrop-filter: blur(2px);
@@ -101,11 +134,19 @@
         <div class="page">
             <div class="page-header">
                 <div class="page-title">
-                    <h1>oLabs Web Home</h1>
+                    <h1>Home</h1>
+                </div>
+                <div class="page-actions">
+                    <div class="search">
+                        <input type="search" name="main_search" id="mainSearch" placeholder="Search...">
+                    </div>
                 </div>
             </div>
 
-            <img src="./public/media/image/rectangular/system/icons/link.png" alt="Link Icon">
+            <div class="page-body">
+
+            </div>
+            <!-- <img src="./public/media/image/rectangular/system/icons/link.png" alt="Link Icon"> -->
 
             <div class="watch"></div>
         </div>

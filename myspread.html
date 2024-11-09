@@ -204,6 +204,7 @@
     z-index: 50001;
     position: relative;
     pointer-events: none;
+    font-size: 2rem;
 }
     </style>
 </head>
@@ -212,18 +213,29 @@
     <div class="dynamic active highlight highlight-javascript">
 
     </div>
+
+
+
+
     <div class="semi highlight highlight-javascript">
 
     </div>
+
+
+
     <div class="static highlight highlight-javascript">
 
     </div>
+
+
 
     <div id="buttons">
         <div data-type="dynamic" class="active button dynamic">dynamic</div>
         <div data-type="semi" class="button semi">semi</div>
         <div data-type="static" class="button static">static</div>
     </div>
+
+
     <div id="zone_joystick">
         <div id="debug">
             <ul>
@@ -265,6 +277,8 @@
             <h1>static</h1>
         </div>
     </div>
+
+
     <br />
     <div>
 
@@ -343,7 +357,7 @@
         <a-sound src="src: #ambience1" autoplay="true" position="0 0 0" preload="auto"></a-sound>
 
         <a-entity id="userRig" position="0 2.2 3" user-location >
-            <a-entity camera look-controls wasd-controls listener mouse-cursor>
+            <a-entity id="userCamera1" camera look-controls wasd-controls listener mouse-cursor>
                 <a-entity position="0 0 -3" geometry="primitive: ring; radiusInner: 0.04; radiusOuter: 0.05;"
                     material="color: orangered; opacity: 0.5; shader: flat" cursor="maxDistance: 30; fuse: true">
                     <a-animation begin="click" easing="ease-in" attribute="scale" fill="forwards" from="0.2 0.2 0.2" to="1 1 1"
@@ -531,8 +545,8 @@
     var joysticks = {
         dynamic: {
             zone: s('.zone.dynamic'),
-            color: 'blue',
-            multitouch: true
+            color: 'lightskyblue',
+            multitouch: false
         },
         semi: {
             zone: s('.zone.semi'),
@@ -595,6 +609,10 @@
             debug(data);
             console.log(data)
             moveAngle(data.angle.degree)
+
+
+            moveUserRig(data.angle.degree, data.direction.x, data.direction.y)            
+
         }).on('dir:up plain:up dir:left plain:left dir:down ' +
             'plain:down dir:right plain:right',
             function (evt, data) {
@@ -669,21 +687,23 @@
 
 
 <script>
+    let
+        userLocationData
+
     AFRAME.registerComponent('user-location', {
             init: function () {
                 const userRig = document.getElementById('userRig')
                 let userLocation = this.el.object3D.position
+                console.log(userLocationData)
             },
 
             tick: function () {
                 // Don't call query selector in here, query beforehand.
-                console.log('tick')
                 userLocation = this.el.object3D.position
-                console.log(userLocation)
+                // console.log(userLocation)
             },
             tock: function () {
-                console.log('tock')
-                console.log(userRig.getAttribute('position'))
+                // console.log(userRig.getAttribute('position'))
 
             }
         });
@@ -692,6 +712,27 @@
     function moveAngle(deg) {
         console.log(deg)
     }
+
+
+function moveUserRig(angle, directionX, directionY) {
+    console.log('ANGLE: ', angle)
+    console.log('DIRECTION X: ', directionX)
+    console.log('DIRECTION Y: ', directionY)
+    console.log(userRig)
+    userRig.setAttribute('rotation', `0 ${angle} 0`)
+
+    const userPosition = userRig.getAttribute('position')
+    console.log('userLocation: ', userLocation)
+    userLocationData = {
+        rotation: `0 ${angle} 0`,
+        directionX: directionX,
+        directionY: directionY
+    }
+
+    if (directionX === 'right') {
+        userRig.setAttribute('position', `0 2.2 -1`)
+    }
+}
 
 
 </script>
